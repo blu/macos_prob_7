@@ -313,7 +313,7 @@
 					"CLANG_QUIRK_0001=1",
 					"CLANG_QUIRK_0002=1",
 					"OCL_QUIRK_0001=1",
-					"OCL_KERNEL_BUILD_VERBOSE=1",
+					"OCL_KERNEL_BUILD_VERBOSE=0",
 				);
 				HEADER_SEARCH_PATHS = (
 					/Users/user/proj/interview/common,
@@ -344,7 +344,7 @@
 					"CLANG_QUIRK_0001=1",
 					"CLANG_QUIRK_0002=1",
 					"OCL_QUIRK_0001=1",
-					"OCL_KERNEL_BUILD_VERBOSE=1",
+					"OCL_KERNEL_BUILD_VERBOSE=0",
 				);
 				HEADER_SEARCH_PATHS = (
 					/Users/user/proj/interview/common,
