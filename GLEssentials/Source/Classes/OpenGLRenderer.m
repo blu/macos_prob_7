@@ -103,10 +103,7 @@ static inline const char * GetGLErrorString(GLenum error)
 
 		if (initFrame())
 		{
-#if !__has_feature(objc_arc)
-			[self release];
-#endif
-			return nil;
+			[[NSApplication sharedApplication] terminate:nil];
 		}
 
 		// Check for errors to make sure all of our setup went ok
