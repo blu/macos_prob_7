@@ -103,9 +103,11 @@ CFLAGS += \
 
 ifeq ($(UNAME), Darwin)
 
+	LINKFLAGS += -framework OpenCL -framework OpenGL -framework CoreServices
+
 	ifeq ($(HOSTTYPE), powerpc)
 		CFLAGS += -arch ppc -mtune=7450 -faltivec
-		LINKFLAGS += -framework OpenCL -framework OpenGL -framework CoreServices -arch ppc -Wl,-Y,1455
+		LINKFLAGS += -arch ppc -Wl,-Y,1455
 	else
 		LINKFLAGS += \
 			-mmacosx-version-min=10.10 \
@@ -117,10 +119,10 @@ ifeq ($(UNAME), Darwin)
 
 		ifeq ($(HOSTTYPE), x86_64)
 			CFLAGS += -arch x86_64 -march=native -mtune=native
-			LINKFLAGS += -framework OpenCL -framework OpenGL -framework CoreServices -arch x86_64
+			LINKFLAGS += -arch x86_64
 		else
 			CFLAGS += -arch i386 -march=native -mtune=native
-			LINKFLAGS += -framework OpenCL -framework OpenGL -framework CoreServices -arch i386
+			LINKFLAGS += -arch i386
 		endif
 	endif
 
@@ -135,7 +137,7 @@ BINARY := $(TARGET).app/Contents/MacOS/$(TARGET)
 all: $(BINARY)
 
 %.o : %.cpp
-	$(CC) -x c++ -std=gnu++11 -stdlib=libc++ $(CXXFLAGS) -c $< -o $@
+	$(CC) -x c++ -std=c++11 -stdlib=libc++ $(CXXFLAGS) -c $< -o $@
 
 %.o : %.mm
 	$(CC) -x objective-c++ -std=gnu++11 -fobjc-arc -stdlib=libc++ $(CXXFLAGS) -c $< -o $@
