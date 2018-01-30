@@ -95,22 +95,17 @@ CFLAGS += \
 	-I./GLEssentials/Source/Classes \
 	-I./GLEssentials/Source/Classes/OSX \
 	-DMINIMAL_TREE=1 \
-	-DFB_RES_FIXED_W=512 \
-	-DFB_RES_FIXED_H=512 \
-	-DRAY_HIGH_PRECISION_RCP_DIR=1 \
-	-DWORKFORCE_NUM_THREADS=2 \
-	-DDIVISION_OF_LABOR_VER=2 \
-	-DBOUNCE_COMPUTE_VER=1 \
-	-DAO_NUM_RAYS=16 \
 	-DCLANG_QUIRK_0001=1 \
 	-DCLANG_QUIRK_0002=1 \
+	-DOCL_QUIRK_0001=1 \
+	-DOCL_KERNEL_BUILD_VERBOSE=0 \
 	-DNDEBUG
 
 ifeq ($(UNAME), Darwin)
 
 	ifeq ($(HOSTTYPE), powerpc)
 		CFLAGS += -arch ppc -mtune=7450 -faltivec
-		LINKFLAGS += -framework OpenGL -framework CoreServices -arch ppc -Wl,-Y,1455
+		LINKFLAGS += -framework OpenCL -framework OpenGL -framework CoreServices -arch ppc -Wl,-Y,1455
 	else
 		LINKFLAGS += \
 			-mmacosx-version-min=10.10 \
@@ -122,10 +117,10 @@ ifeq ($(UNAME), Darwin)
 
 		ifeq ($(HOSTTYPE), x86_64)
 			CFLAGS += -arch x86_64 -march=native -mtune=native
-			LINKFLAGS += -framework OpenGL -framework CoreServices -arch x86_64
+			LINKFLAGS += -framework OpenCL -framework OpenGL -framework CoreServices -arch x86_64
 		else
 			CFLAGS += -arch i386 -march=native -mtune=native
-			LINKFLAGS += -framework OpenGL -framework CoreServices -arch i386
+			LINKFLAGS += -framework OpenCL -framework OpenGL -framework CoreServices -arch i386
 		endif
 	endif
 
