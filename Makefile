@@ -88,6 +88,7 @@ CFLAGS += \
 	-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk \
 	-Winvalid-offsetof \
 	-mmacosx-version-min=10.10 \
+	-I$(EXTERN_COMMON_PATH)/.. \
 	-I$(EXTERN_COMMON_PATH) \
 	-I$(EXTERN_PROB_PATH) \
 	-I./GLEssentials/Source \
