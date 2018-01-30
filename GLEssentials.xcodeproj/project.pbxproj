@@ -316,9 +316,9 @@
 					"OCL_KERNEL_BUILD_VERBOSE=0",
 				);
 				HEADER_SEARCH_PATHS = (
-					/Users/user/proj/interview/common,
-					/Users/user/proj/interview/prob_7,
-					/Users/user/proj/interview,
+					../interview/common,
+					../interview/prob_7,
+					../interview,
 				);
 				INFOPLIST_FILE = GLEssentials/Data/OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -347,9 +347,9 @@
 					"OCL_KERNEL_BUILD_VERBOSE=0",
 				);
 				HEADER_SEARCH_PATHS = (
-					/Users/user/proj/interview/common,
-					/Users/user/proj/interview/prob_7,
-					/Users/user/proj/interview,
+					../interview/common,
+					../interview/prob_7,
+					../interview,
 				);
 				INFOPLIST_FILE = GLEssentials/Data/OSX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

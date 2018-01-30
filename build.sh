@@ -2,7 +2,7 @@
 
 # alternatively, via xcode native cli interface (artifacts go to ./build/Release/GLEssentials.app/):
 #
-# $ xcodebuild -project GLEssentials.xcodeproj/ -configuration Release
+# $ xcodebuild -project GLEssentials.xcodeproj -configuration Release -target GLEssentials-OSX
 
 EXTERN_PROB_PATH=../interview/prob_7
 EXTERN_COMMON_PATH=../interview/common
