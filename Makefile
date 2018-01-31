@@ -53,11 +53,11 @@ CFLAGS += \
 	-Werror=non-modular-include-in-framework-module \
 	-fvisibility=hidden \
 	-fvisibility-inlines-hidden  \
-	-fasm-blocks \
 	-fstrict-aliasing \
 	-fno-exceptions \
 	-fno-rtti \
 	-Ofast \
+	-funroll-loops \
 	-Wno-missing-field-initializers \
 	-Wno-missing-prototypes \
 	-Werror=return-type \
@@ -85,8 +85,8 @@ CFLAGS += \
 	-Wenum-conversion \
 	-Wno-newline-eof \
 	-Wno-c++11-extensions \
-	-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk \
 	-Winvalid-offsetof \
+	-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk \
 	-mmacosx-version-min=10.10 \
 	-I$(EXTERN_COMMON_PATH)/.. \
 	-I$(EXTERN_COMMON_PATH) \
