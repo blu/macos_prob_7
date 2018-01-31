@@ -1446,7 +1446,7 @@ bool ActionCameraLean::frame(
 
 cli_param param;
 extern "C" unsigned input;
-unsigned input = 0;
+unsigned input;
 
 namespace { // anonymous
 
