@@ -30,13 +30,8 @@ OBJS0 = $(SRCS:.cpp=.o)
 OBJS1 = $(OBJS0:.mm=.o)
 OBJS = $(OBJS1:.m=.o)
 
-# for now stick with /usr/bin/clang, as this recent gcc fails to build us:
-#
-# gcc (Ubuntu/Linaro 4.6.1-9ubuntu3) 4.6.1
-
 CC = /usr/bin/clang
 LD = /usr/bin/clang++
-# CFLAGS += -pipe -fmessage-length=0 -fno-rtti -O3 -funroll-loops -ffast-math -fstrict-aliasing -Wtrigraphs -Wreturn-type -Wunused-variable -Wunused-value -DGLEW_NO_GLU
 CFLAGS += \
 	-Wno-logical-op-parentheses \
 	-Wno-bitwise-op-parentheses \
@@ -57,7 +52,9 @@ CFLAGS += \
 	-fno-exceptions \
 	-fno-rtti \
 	-Ofast \
+	-flto \
 	-funroll-loops \
+	-Wtrigraphs \
 	-Wno-missing-field-initializers \
 	-Wno-missing-prototypes \
 	-Werror=return-type \
@@ -73,6 +70,7 @@ CFLAGS += \
 	-Wno-unused-parameter \
 	-Wunused-variable \
 	-Wunused-value \
+	-Wreturn-type \
 	-Wempty-body \
 	-Wuninitialized \
 	-Wconditional-uninitialized \
@@ -105,26 +103,14 @@ ifeq ($(UNAME), Darwin)
 
 	LINKFLAGS += -framework OpenCL -framework OpenGL -framework CoreServices
 
-	ifeq ($(HOSTTYPE), powerpc)
-		CFLAGS += -arch ppc -mtune=7450 -faltivec
-		LINKFLAGS += -arch ppc -Wl,-Y,1455
-	else
-		LINKFLAGS += \
-			-mmacosx-version-min=10.10 \
-			-Xlinker -object_path_lto \
-			-Xlinker build/GLEssentials.build/Release/GLEssentials-OSX.build/Objects-normal/x86_64/GLEssentials_lto.o \
-			-fobjc-arc \
-			-fobjc-link-runtime \
-			-stdlib=libc++
+	LINKFLAGS += \
+		-mmacosx-version-min=10.10 \
+		-fobjc-arc \
+		-fobjc-link-runtime \
+		-stdlib=libc++
 
-		ifeq ($(HOSTTYPE), x86_64)
-			CFLAGS += -arch x86_64 -march=native -mtune=native
-			LINKFLAGS += -arch x86_64
-		else
-			CFLAGS += -arch i386 -march=native -mtune=native
-			LINKFLAGS += -arch i386
-		endif
-	endif
+	CFLAGS += -arch $(HOSTTYPE) -march=native -mtune=native
+	LINKFLAGS += -arch $(HOSTTYPE)
 
 else
 endif
