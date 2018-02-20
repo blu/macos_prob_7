@@ -84,7 +84,7 @@ CFLAGS += \
 	-Wno-newline-eof \
 	-Wno-c++11-extensions \
 	-Winvalid-offsetof \
-	-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk \
+	-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk \
 	-mmacosx-version-min=10.10 \
 	-I$(EXTERN_COMMON_PATH)/.. \
 	-I$(EXTERN_COMMON_PATH) \
