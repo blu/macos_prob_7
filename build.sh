@@ -4,6 +4,8 @@
 #
 # $ xcodebuild -project GLEssentials.xcodeproj -configuration Release -target GLEssentials-OSX
 
+shopt -s nullglob
+
 EXTERN_PROB_PATH=../interview/prob_7
 EXTERN_COMMON_PATH=../interview/common
 MAKE_OUTPUT_PATH=problem_7.app/Contents/MacOS
@@ -12,7 +14,11 @@ if [[ $1 == "clean" ]]; then
 	HOSTTYPE=${HOSTTYPE} LANG=en_US.US-ASCII EXTERN_COMMON_PATH=${EXTERN_COMMON_PATH} EXTERN_PROB_PATH=${EXTERN_PROB_PATH} make clean
 
 	if [ -d ${MAKE_OUTPUT_PATH} ]; then
-		rm ${MAKE_OUTPUT_PATH}/*.glsl?
+		FILES=(${MAKE_OUTPUT_PATH}/*.glsl?)
+
+		if [[ ${#FILES[@]} -ne 0 ]]; then
+			rm ${FILES[@]}
+		fi
 		rmdir ${MAKE_OUTPUT_PATH}
 	fi
 
@@ -26,5 +32,9 @@ fi
 HOSTTYPE=${HOSTTYPE} LANG=en_US.US-ASCII EXTERN_COMMON_PATH=${EXTERN_COMMON_PATH} EXTERN_PROB_PATH=${EXTERN_PROB_PATH} make
 
 if (( $? == 0 )); then
-	cp -v ${EXTERN_PROB_PATH}/*.glsl? ${MAKE_OUTPUT_PATH}
+	FILES=(${EXTERN_PROB_PATH}/*.glsl?)
+
+	if [[ ${#FILES[@]} -ne 0 ]]; then
+		cp ${FILES[@]} ${MAKE_OUTPUT_PATH}
+	fi
 fi
