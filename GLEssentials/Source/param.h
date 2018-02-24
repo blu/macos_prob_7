@@ -1,13 +1,13 @@
 #ifndef param_H__
 #define param_H__
 
-enum KERNEL_PARAM_TYPE {
+enum KernelParamType { // type of kernel parameters
 	PARAM_TYPE_BUFFER = 0,
 	PARAM_TYPE_IMAGE
 };
 
 struct cli_param {
-	enum Flags {
+	enum Flags { // flags comprising cli_param::flags
 		BIT_REPORT_CAPS              = 1,
 		BIT_DISCARD_PLATFORM_VERSION = 2,
 		BIT_DISCARD_DEVICE_VERSION   = 4,
@@ -17,7 +17,7 @@ struct cli_param {
 	unsigned platform_idx;  // cl platform index
 	unsigned device_idx;    // cl device index
 	unsigned flags;         // custom control flags
-	enum KERNEL_PARAM_TYPE kern_param_type;
+	enum KernelParamType kern_param_type;
 
 	unsigned image_w;       // frame width
 	unsigned image_h;       // frame height

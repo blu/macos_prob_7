@@ -1586,12 +1586,12 @@ int initFrame(void)
 	// ensure GPU resources we just initialized get deinitialized at early-out errors
 	scoped_ptr< deinit_resources_t, scoped_functor > release_monv(testbed::monv::deinit_resources);
 
-	const bool report_caps                  = bool(param.flags & cli_param::BIT_REPORT_CAPS);
-	const bool discard_platform_version     = bool(param.flags & cli_param::BIT_DISCARD_PLATFORM_VERSION);
-	const bool discard_device_version       = bool(param.flags & cli_param::BIT_DISCARD_DEVICE_VERSION);
-	const KERNEL_PARAM_TYPE kern_param_type = param.kern_param_type;
-	const unsigned platform_idx             = param.platform_idx;
-	unsigned device_idx                     = param.device_idx;
+	const bool report_caps                = bool(param.flags & cli_param::BIT_REPORT_CAPS);
+	const bool discard_platform_version   = bool(param.flags & cli_param::BIT_DISCARD_PLATFORM_VERSION);
+	const bool discard_device_version     = bool(param.flags & cli_param::BIT_DISCARD_DEVICE_VERSION);
+	const KernelParamType kern_param_type = param.kern_param_type;
+	const unsigned platform_idx           = param.platform_idx;
+	unsigned device_idx                   = param.device_idx;
 
 	if (report_caps) {
 		const int result_caps = reportCLCaps(discard_platform_version, discard_device_version);
@@ -2879,11 +2879,11 @@ int renderFrame(void)
 {
 	using clutil::reportCLError;
 
-	const bool report_kernel_time           = param.flags & cli_param::BIT_REPORT_KERNEL_TIME;
-	const KERNEL_PARAM_TYPE kern_param_type = param.kern_param_type;
-	const size_t image_w                    = param.image_w;
-	const size_t image_h                    = param.image_h;
-	const size_t frames                     = param.frames;
+	const bool report_kernel_time         = param.flags & cli_param::BIT_REPORT_KERNEL_TIME;
+	const KernelParamType kern_param_type = param.kern_param_type;
+	const size_t image_w                  = param.image_w;
+	const size_t image_h                  = param.image_h;
+	const size_t frames                   = param.frames;
 
 	const size_t mem_size_image = image_w * image_h * sizeof(cl_uchar);
 	const size_t frame = frame_idx++;

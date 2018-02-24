@@ -65,6 +65,7 @@ CFLAGS += \
 	-Wno-overloaded-virtual \
 	-Wno-exit-time-destructors \
 	-Wno-missing-braces \
+	-Wno-missing-declarations \
 	-Wunused-function \
 	-Wno-unused-label \
 	-Wno-unused-parameter \
