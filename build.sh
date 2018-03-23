@@ -6,8 +6,8 @@
 
 shopt -s nullglob
 
-EXTERN_PROB_PATH=../interview/prob_7
-EXTERN_COMMON_PATH=../interview/common
+EXTERN_PROB_PATH=../cg2_2014_demo/prob_7
+EXTERN_COMMON_PATH=../cg2_2014_demo/common
 MAKE_OUTPUT_PATH=problem_7.app/Contents/MacOS
 
 if [[ $1 == "clean" ]]; then
