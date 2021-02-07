@@ -108,12 +108,20 @@ ifeq ($(UNAME), Darwin)
 		-mmacosx-version-min=10.10 \
 		-fobjc-arc \
 		-fobjc-link-runtime \
-		-stdlib=libc++
+		-stdlib=libc++ \
+		-arch $(HOSTTYPE)
 
-	CFLAGS += -arch $(HOSTTYPE) -march=native -mtune=native
-	LINKFLAGS += -arch $(HOSTTYPE)
+	CFLAGS += -arch $(HOSTTYPE)
 
+	ifeq ($(HOSTTYPE), arm64)
+		CFLAGS += -march=armv8.4-a -mtune=native
+
+	else ifeq ($(HOSTTYPE), x86_64)
+		CFLAGS += -march=native -mtune=native
+
+	endif
 else
+	# Nothing to do at this stage.
 endif
 
 CXX = $(CC)

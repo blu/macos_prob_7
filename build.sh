@@ -14,10 +14,10 @@ if [[ $1 == "clean" ]]; then
 	HOSTTYPE=${HOSTTYPE} LANG=en_US.US-ASCII EXTERN_COMMON_PATH=${EXTERN_COMMON_PATH} EXTERN_PROB_PATH=${EXTERN_PROB_PATH} make clean
 
 	if [ -d ${MAKE_OUTPUT_PATH} ]; then
-		FILES=(${MAKE_OUTPUT_PATH}/*.glsl?)
+		FILES=(${MAKE_OUTPUT_PATH}/*.glsl? ${MAKE_OUTPUT_PATH}/kernel)
 
 		if [[ ${#FILES[@]} -ne 0 ]]; then
-			rm ${FILES[@]}
+			rm -rf ${FILES[@]}
 		fi
 		rmdir ${MAKE_OUTPUT_PATH}
 	fi
@@ -32,9 +32,9 @@ fi
 HOSTTYPE=${HOSTTYPE} LANG=en_US.US-ASCII EXTERN_COMMON_PATH=${EXTERN_COMMON_PATH} EXTERN_PROB_PATH=${EXTERN_PROB_PATH} make
 
 if (( $? == 0 )); then
-	FILES=(${EXTERN_PROB_PATH}/*.glsl?)
+	FILES=(${EXTERN_PROB_PATH}/*.glsl? ${EXTERN_PROB_PATH}/kernel)
 
 	if [[ ${#FILES[@]} -ne 0 ]]; then
-		cp ${FILES[@]} ${MAKE_OUTPUT_PATH}
+		cp -r ${FILES[@]} ${MAKE_OUTPUT_PATH}
 	fi
 fi
