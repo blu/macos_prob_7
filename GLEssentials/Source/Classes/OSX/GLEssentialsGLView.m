@@ -14,8 +14,6 @@
 #error missing CGL_VERSION_1_3
 #endif
 
-#define SUPPORT_RETINA_RESOLUTION 1
-
 @interface GLEssentialsGLView ()
 {
     OpenGLRenderer* _renderer;
@@ -50,8 +48,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 
 - (instancetype) init {
 	if (self = [super init]) {
-		NSOpenGLPixelFormatAttribute attrs[256] =
-		{
+		NSOpenGLPixelFormatAttribute attrs[256] = {
 			NSOpenGLPFADoubleBuffer,
 			NSOpenGLPFADepthSize, 24,
 			// Must specify the 3.2 Core Profile to use OpenGL 3.2
@@ -94,8 +91,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 
 		NSOpenGLPixelFormat *pf = [[NSOpenGLPixelFormat alloc] initWithAttributes:attrs];
 
-		if (!pf)
-		{
+		if (!pf) {
 			NSLog(@"error: no OpenGL pixel format");
 		}
 
@@ -198,38 +194,39 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 
 #if SUPPORT_RETINA_RESOLUTION
 
-    // Rendering at retina resolutions will reduce aliasing, but at the potential
-    // cost of framerate and battery life due to the GPU needing to render more
-    // pixels.
+	// Rendering at retina resolutions will reduce aliasing, but at the potential
+	// cost of framerate and battery life due to the GPU needing to render more
+	// pixels.
 
-    // Any calculations the renderer does which use pixel dimentions, must be
-    // in "retina" space.  [NSView convertRectToBacking] converts point sizes
-    // to pixel sizes.  Thus the renderer gets the size in pixels, not points,
-    // so that it can set it's viewport and perform and other pixel based
-    // calculations appropriately.
-    // viewRectPixels will be larger than viewRectPoints for retina displays.
-    // viewRectPixels will be the same as viewRectPoints for non-retina displays
-    NSRect viewRectPixels = [self convertRectToBacking:viewRectPoints];
+	// Any calculations the renderer does which use pixel dimentions, must be
+	// in "retina" space.  [NSView convertRectToBacking] converts point sizes
+	// to pixel sizes.  Thus the renderer gets the size in pixels, not points,
+	// so that it can set it's viewport and perform and other pixel based
+	// calculations appropriately.
+	// viewRectPixels will be larger than viewRectPoints for retina displays.
+	// viewRectPixels will be the same as viewRectPoints for non-retina displays
+	NSRect viewRectPixels = [self convertRectToBacking:viewRectPoints];
 
 #else //if !SUPPORT_RETINA_RESOLUTION
 
-    // App will typically render faster and use less power rendering at
-    // non-retina resolutions since the GPU needs to render less pixels.
-    // There is the cost of more aliasing, but it will be no-worse than
-    // on a Mac without a retina display.
+	// App will typically render faster and use less power rendering at
+	// non-retina resolutions since the GPU needs to render less pixels.
+	// There is the cost of more aliasing, but it will be no-worse than
+	// on a Mac without a retina display.
 
-    // Points:Pixels is always 1:1 when not supporting retina resolutions
-    NSRect viewRectPixels = viewRectPoints;
+	// Points:Pixels is always 1:1 when not supporting retina resolutions
+	NSRect viewRectPixels = viewRectPoints;
 
 #endif // !SUPPORT_RETINA_RESOLUTION
-    
-	// Set the new dimensions in our renderer
-	[_renderer resizeWithWidth:viewRectPixels.size.width
-                      AndHeight:viewRectPixels.size.height];
+
+	if (viewRectPixels.size.width > 0 && viewRectPixels.size.height > 0) {
+		// Set the new dimensions in our renderer
+		[_renderer resizeWithWidth:viewRectPixels.size.width
+						 AndHeight:viewRectPixels.size.height];
+	}
 
 	CGLUnlockContext([[self openGLContext] CGLContextObj]);
 }
-
 
 - (void)renewGState
 {	

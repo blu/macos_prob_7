@@ -21,8 +21,15 @@
 
 - (instancetype) init {
 	if (self = [super init]) {
+#if SUPPORT_RETINA_RESOLUTION
+		const CGFloat res_w = param.image_w / 2;
+		const CGFloat res_h = param.image_h / 2;
+#else
+		const CGFloat res_w = param.image_w;
+		const CGFloat res_h = param.image_h;
+#endif
 		GLEssentialsGLView *view = [[GLEssentialsGLView alloc] init];
-		NSWindow *window = [[NSWindow alloc] initWithContentRect: NSMakeRect(0, 0, param.image_w, param.image_h)
+		NSWindow *window = [[NSWindow alloc] initWithContentRect: NSMakeRect(0, 0, res_w, res_h)
 		                                               styleMask: NSWindowStyleMaskTitled
 		                                                 backing: NSBackingStoreBuffered
 		                                                   defer: NO];

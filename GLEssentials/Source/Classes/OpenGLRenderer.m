@@ -80,6 +80,7 @@ static inline const char * GetGLErrorString(GLenum error)
 
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height
 {
+	NSLog(@"OpenGLRenderer resize %u %u", width, height);
 	glViewport(0, 0, width, height);
 }
 

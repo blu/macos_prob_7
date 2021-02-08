@@ -12,7 +12,6 @@ TARGET = problem_7
 UNAME := $(shell uname)
 
 SRCS = \
-	$(EXTERN_COMMON_PATH)/pthread_barrier.cpp \
 	$(EXTERN_COMMON_PATH)/prim_mono_view.cpp \
 	$(EXTERN_COMMON_PATH)/get_file_size.cpp \
 	$(EXTERN_COMMON_PATH)/util_gl.cpp \
@@ -99,6 +98,11 @@ CFLAGS += \
 	-DOCL_QUIRK_0001=1 \
 	-DOCL_KERNEL_BUILD_VERBOSE=0 \
 	-DNDEBUG
+
+ifeq ($(shell system_profiler SPDisplaysDataType | grep -E ^[[:space:]]*Resolution: | grep Retina$),)
+else
+	CFLAGS += -DSUPPORT_RETINA_RESOLUTION=1
+endif
 
 ifeq ($(UNAME), Darwin)
 
