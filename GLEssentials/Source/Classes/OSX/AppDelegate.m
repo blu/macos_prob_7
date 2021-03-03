@@ -21,18 +21,15 @@
 
 - (instancetype) init {
 	if (self = [super init]) {
-#if SUPPORT_RETINA_RESOLUTION
-		const CGFloat res_w = param.image_w / 2;
-		const CGFloat res_h = param.image_h / 2;
-#else
-		const CGFloat res_w = param.image_w;
-		const CGFloat res_h = param.image_h;
-#endif
+		NSScreen *mainScreen = [NSScreen mainScreen];
+		const size_t retina = mainScreen.backingScaleFactor == 2.f ? 1 : 0;
 		GLEssentialsGLView *view = [[GLEssentialsGLView alloc] init];
-		NSWindow *window = [[NSWindow alloc] initWithContentRect: NSMakeRect(0, 0, res_w, res_h)
+		NSWindow *window = [[NSWindow alloc] initWithContentRect: NSMakeRect(0, 0, param.image_w >> retina, param.image_h >> retina)
 		                                               styleMask: NSWindowStyleMaskTitled
 		                                                 backing: NSBackingStoreBuffered
-		                                                   defer: NO];
+		                                                   defer: NO
+		                                                  screen: mainScreen];
+		window.title = NSProcessInfo.processInfo.processName;
 		[window setContentView: view];
 		_controller = [[GLEssentialsWindowController alloc] initWithWindow: window];
 	}
@@ -40,18 +37,14 @@
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
-	NSWindow *window = [_controller window];
-	window.title = NSProcessInfo.processInfo.processName;
-	[window cascadeTopLeftFromPoint: NSMakePoint(20,20)];
-	[window makeKeyAndOrderFront: self];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	// Insert code here to initialize your application
+	NSWindow *window = [_controller window];
+	[window makeKeyAndOrderFront: self];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-	// Insert code here to tear down your application
 }
 
 @end

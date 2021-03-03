@@ -97,12 +97,8 @@ CFLAGS += \
 	-DCLANG_QUIRK_0002=1 \
 	-DOCL_QUIRK_0001=1 \
 	-DOCL_KERNEL_BUILD_VERBOSE=0 \
+	-DSUPPORT_RETINA_RESOLUTION \
 	-DNDEBUG
-
-ifeq ($(shell system_profiler SPDisplaysDataType | grep -E ^[[:space:]]*Resolution: | grep Retina$),)
-else
-	CFLAGS += -DSUPPORT_RETINA_RESOLUTION=1
-endif
 
 ifeq ($(UNAME), Darwin)
 

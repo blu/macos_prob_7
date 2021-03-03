@@ -39,8 +39,7 @@ int main(int argc, char * argv[])
 
 	@autoreleasepool {
 		NSApplication *application = [NSApplication sharedApplication];
-		AppDelegate *appDelegate = [[AppDelegate alloc] init];
-		[application setDelegate: appDelegate];
+		[application activateIgnoringOtherApps: YES];
 
 		// provide app menu with one item: quit
 		NSMenuItem *item = [[NSMenuItem alloc] init];
@@ -49,6 +48,8 @@ int main(int argc, char * argv[])
 		[application setMainMenu: [[NSMenu alloc] init]];
 		[application.mainMenu addItem: item];
 
+		AppDelegate *appDelegate = [[AppDelegate alloc] init];
+		[application setDelegate: appDelegate];
 		[application run];
 	}
 	return EXIT_SUCCESS;

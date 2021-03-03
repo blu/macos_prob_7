@@ -28,8 +28,7 @@ extern unsigned input;
 {
     self = [super initWithWindow:window];
 
-	if (self)
-	{
+	if (self) {
 		// Initialize to nil since it indicates app is not fullscreen
 		_fullscreenWindow = nil;
     }
@@ -40,8 +39,7 @@ extern unsigned input;
 - (void) goFullscreen
 {
 	// If app is already fullscreen...
-	if(_fullscreenWindow)
-	{
+	if(_fullscreenWindow) {
 		//...don't do anything
 		return;
 	}
@@ -76,8 +74,7 @@ extern unsigned input;
 - (void) goWindow
 {
 	// If controller doesn't have a full screen window...
-	if(_fullscreenWindow == nil)
-	{
+	if(_fullscreenWindow == nil) {
 		//...app is already windowed so don't do anything
 		return;
 	}
@@ -109,16 +106,13 @@ extern unsigned input;
 	unichar c = [[event charactersIgnoringModifiers] characterAtIndex:0];
 	unsigned input_mask = 0;
 
-	switch (c)
-	{
+	switch (c) {
 		// Have f key toggle fullscreen
 		case 'f':
-			if(_fullscreenWindow == nil)
-			{
+			if(_fullscreenWindow == nil) {
 				[self goFullscreen];
 			}
-			else
-			{
+			else {
 				[self goWindow];
 			}
 			return;
@@ -174,8 +168,7 @@ extern unsigned input;
 			break;
 	}
 
-	if (input_mask)
-	{
+	if (input_mask) {
 		input |= input_mask;
 		return;
 	}
@@ -189,8 +182,7 @@ extern unsigned input;
 	unichar c = [[event charactersIgnoringModifiers] characterAtIndex:0];
 	unsigned input_mask = 0;
 
-	switch (c)
-	{
+	switch (c) {
 		// We have consumed keyDown and handled f key -- do nothing here
 		case 'f':
 			return;
@@ -246,8 +238,7 @@ extern unsigned input;
 			break;
 	}
 
-	if (input_mask)
-	{
+	if (input_mask) {
 		input &= ~input_mask;
 		return;
 	}
