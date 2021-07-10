@@ -1530,14 +1530,20 @@ cl_ushort8* octet_map_buffer[n_buffering];
 cl_ushort16* leaf_map_buffer[n_buffering];
 cl_float8* voxel_map_buffer[n_buffering];
 cl_float4* carb_map_buffer[n_buffering];
+#if OCL_BUFFER_COPY != 0
 cl_uchar* image_map_buffer[n_buffering];
+#endif
 
 Array< Timeslice > timeline;
 
 cl_command_queue persist_queue;
 cl_kernel persist_kernel;
 
+#if OCL_BUFFER_COPY != 0
 cl_event event_data_set_ready[n_buffering][4];
+#else
+cl_event event_data_set_ready[n_buffering][5];
+#endif
 cl_event event_kernel_complete[n_buffering];
 
 cl_mem src_a_d[n_buffering];
@@ -1726,7 +1732,7 @@ int initFrame(void)
 		return -1;
 	}
 
-	for (size_t i = 0; i < sizeof(octet_map_buffer) / sizeof(octet_map_buffer[0]); ++i)
+	for (size_t i = 0; i < COUNT_OF(octet_map_buffer); ++i)
 		octet_map_buffer[i] = octet_map() + i * octet_count;
 
 	// leaf map element:
@@ -1743,7 +1749,7 @@ int initFrame(void)
 		return -1;
 	}
 
-	for (size_t i = 0; i < sizeof(leaf_map_buffer) / sizeof(leaf_map_buffer[0]); ++i)
+	for (size_t i = 0; i < COUNT_OF(leaf_map_buffer); ++i)
 		leaf_map_buffer[i] = leaf_map() + i * leaf_count;
 
 	// voxel map element:
@@ -1762,7 +1768,7 @@ int initFrame(void)
 		return -1;
 	}
 
-	for (size_t i = 0; i < sizeof(voxel_map_buffer) / sizeof(voxel_map_buffer[0]); ++i)
+	for (size_t i = 0; i < COUNT_OF(voxel_map_buffer); ++i)
 		voxel_map_buffer[i] = voxel_map() + i * voxel_count;
 
 	// CARB (camera and root bbox) constant buffer element:
@@ -1775,7 +1781,7 @@ int initFrame(void)
 		return -1;
 	}
 
-	for (size_t i = 0; i < sizeof(carb_map_buffer) / sizeof(carb_map_buffer[0]); ++i)
+	for (size_t i = 0; i < COUNT_OF(carb_map_buffer); ++i)
 		carb_map_buffer[i] = carb_map() + i * carb_count;
 
 	// create cl mem objects ///////////////////////////////////////////////////
@@ -1838,7 +1844,7 @@ int initFrame(void)
 
 	switch (kern_param_type) {
 	case PARAM_TYPE_BUFFER:
-		for (size_t i = 0; i < sizeof(src_a_d) / sizeof(src_a_d[0]); ++i) {
+		for (size_t i = 0; i < COUNT_OF(src_a_d); ++i) {
 			src_a_d[i] = clCreateBuffer(context, src_flags, mem_size_octet, 0, &success);
 
 			if (reportCLError(success)) {
@@ -1849,7 +1855,7 @@ int initFrame(void)
 		break;
 
 	case PARAM_TYPE_IMAGE:
-		for (size_t i = 0; i < sizeof(src_a_d) / sizeof(src_a_d[0]); ++i) {
+		for (size_t i = 0; i < COUNT_OF(src_a_d); ++i) {
 			src_a_d[i] = clwrap::clCreateImage(context,
 				src_flags, &src_image_format_ushort4, &src_image_desc_octet, 0, &success);
 
@@ -1866,7 +1872,7 @@ int initFrame(void)
 
 	switch (kern_param_type) {
 	case PARAM_TYPE_BUFFER:
-		for (size_t i = 0; i < sizeof(src_b_d) / sizeof(src_b_d[0]); ++i) {
+		for (size_t i = 0; i < COUNT_OF(src_b_d); ++i) {
 			src_b_d[i] = clCreateBuffer(context, src_flags, mem_size_leaf, 0, &success);
 
 			if (reportCLError(success)) {
@@ -1877,7 +1883,7 @@ int initFrame(void)
 		break;
 
 	case PARAM_TYPE_IMAGE:
-		for (size_t i = 0; i < sizeof(src_b_d) / sizeof(src_b_d[0]); ++i) {
+		for (size_t i = 0; i < COUNT_OF(src_b_d); ++i) {
 			src_b_d[i] = clwrap::clCreateImage(context,
 				src_flags, &src_image_format_ushort4, &src_image_desc_leaf, 0, &success);
 
@@ -1894,7 +1900,7 @@ int initFrame(void)
 
 	switch (kern_param_type) {
 	case PARAM_TYPE_BUFFER:
-		for (size_t i = 0; i < sizeof(src_c_d) / sizeof(src_c_d[0]); ++i) {
+		for (size_t i = 0; i < COUNT_OF(src_c_d); ++i) {
 			src_c_d[i] = clCreateBuffer(context, src_flags, mem_size_voxel, 0, &success);
 
 			if (reportCLError(success)) {
@@ -1905,7 +1911,7 @@ int initFrame(void)
 		break;
 
 	case PARAM_TYPE_IMAGE:
-		for (size_t i = 0; i < sizeof(src_c_d) / sizeof(src_c_d[0]); ++i) {
+		for (size_t i = 0; i < COUNT_OF(src_c_d); ++i) {
 			src_c_d[i] = clwrap::clCreateImage(context,
 				src_flags, &src_image_format_float4, &src_image_desc_voxel, 0, &success);
 
@@ -1920,7 +1926,7 @@ int initFrame(void)
 	// cam mem source /////////////////////////////////////////////////////////////
 	scoped_ptr< cl_mem, scoped_functor > release_src_d(src_d_d);
 
-	for (size_t i = 0; i < sizeof(src_d_d) / sizeof(src_d_d[0]); ++i) {
+	for (size_t i = 0; i < COUNT_OF(src_d_d); ++i) {
 		src_d_d[i] = clCreateBuffer(context, src_flags, mem_size_carb, 0, &success);
 
 		if (reportCLError(success)) {
@@ -1931,6 +1937,8 @@ int initFrame(void)
 
 	// output map /////////////////////////////////////////////////////////////////
 	const size_t mem_size_image = image_w * image_h * sizeof(cl_uchar);
+
+#if OCL_BUFFER_COPY != 0
 	const size_t pixel_count = image_w * image_h;
 
 	scoped_ptr< cl_uchar, generic_free > image_map(
@@ -1941,9 +1949,10 @@ int initFrame(void)
 		return -1;
 	}
 
-	for (size_t i = 0; i < sizeof(image_map_buffer) / sizeof(image_map_buffer[0]); ++i)
+	for (size_t i = 0; i < COUNT_OF(image_map_buffer); ++i)
 		image_map_buffer[i] = image_map() + i * pixel_count;
 
+#endif
 	cl_mem_flags dst_flags = CL_MEM_WRITE_ONLY;
 
 	if (device_version >= ocl_ver(1, 2))
@@ -1951,7 +1960,7 @@ int initFrame(void)
 
 	scoped_ptr< cl_mem, scoped_functor > release_dst(dst_d);
 
-	for (size_t i = 0; i < sizeof(dst_d) / sizeof(dst_d[0]); ++i) {
+	for (size_t i = 0; i < COUNT_OF(dst_d); ++i) {
 		dst_d[i] = clCreateBuffer(context, dst_flags, mem_size_image, 0, &success);
 
 		if (reportCLError(success)) {
@@ -2111,7 +2120,7 @@ int initFrame(void)
 
 	size_t buffer_devinfo[8];
 
-	if (max_dim > sizeof(buffer_devinfo) / sizeof(buffer_devinfo[0])) {
+	if (max_dim > COUNT_OF(buffer_devinfo)) {
 		stream::cerr << "device max work-item dimensions exceed expectations; bailing out\n";
 		return -1;
 	}
@@ -2222,8 +2231,10 @@ int initFrame(void)
 	leaf_map.reset();
 	voxel_map.reset();
 	carb_map.reset();
+#if OCL_BUFFER_COPY != 0
 	image_map.reset();
 
+#endif
 	persist_queue = queue;
 	persist_kernel = kernel;
 
@@ -2298,9 +2309,9 @@ int renderFrame(void)
 			action[i--] = action[--action_count];
 
 	// start any pending actions
-	for (; track_cursor < sizeof(track) / sizeof(track[0]) && c::accum_time >= track[track_cursor].start; ++track_cursor)
+	for (; track_cursor < COUNT_OF(track) && c::accum_time >= track[track_cursor].start; ++track_cursor)
 		if (track[track_cursor].action.start(c::accum_time - track[track_cursor].start, track[track_cursor].duration)) {
-			if (action_count == sizeof(action) / sizeof(action[0])) {
+			if (action_count == COUNT_OF(action)) {
 				stream::cerr << "error: too many pending actions\n";
 				return 999;
 			}
@@ -2437,9 +2448,10 @@ int renderFrame(void)
 	}
 
 	// show result from one frame ago
-	if (0 != frame) {
+	if (frame != 0) {
 		const size_t ready_frame = frame + 1;
 
+#if OCL_BUFFER_COPY != 0
 		success = clEnqueueReadBuffer(queue, dst_d[ready_frame & 1], CL_TRUE, 0, mem_size_image, image_map_buffer[ready_frame & 1],
 			1, &event_kernel_complete[ready_frame & 1], 0);
 
@@ -2450,6 +2462,25 @@ int renderFrame(void)
 
 		testbed::monv::render(image_map_buffer[ready_frame & 1]);
 
+#else
+		void *mapped = clEnqueueMapBuffer(queue, dst_d[ready_frame & 1], CL_TRUE, CL_MAP_READ, 0, mem_size_image,
+			1, &event_kernel_complete[ready_frame & 1], 0, &success);
+
+		if (reportCLError(success)) {
+			stream::cerr << "error enquing ocl map\n";
+			return -1;
+		}
+
+		testbed::monv::render(mapped);
+
+		success = clEnqueueUnmapMemObject(queue, dst_d[ready_frame & 1], mapped, 0, 0, &event_data_set_ready[ready_frame & 1][4]);
+
+		if (reportCLError(success)) {
+			stream::cerr << "error enquing ocl unmap\n";
+			return -1;
+		}
+
+#endif
 		// profile the frame
 		if (report_kernel_time) {
 			cl_ulong t0, t1;
@@ -2517,9 +2548,19 @@ int renderFrame(void)
 		return -1;
 	}
 
+#if OCL_BUFFER_COPY != 0
 	success = clEnqueueNDRangeKernel(queue, kernel, work_dim, 0, global_ws, local_ws,
-		sizeof(event_data_set_ready[0]) / sizeof(event_data_set_ready[0][0]), event_data_set_ready[frame & 1], &event_kernel_complete[frame & 1]);
+		COUNT_OF(event_data_set_ready[0]), event_data_set_ready[frame & 1], &event_kernel_complete[frame & 1]);
 
+#else
+	if (frame > 1)
+		success = clEnqueueNDRangeKernel(queue, kernel, work_dim, 0, global_ws, local_ws,
+			COUNT_OF(event_data_set_ready[0]), event_data_set_ready[frame & 1], &event_kernel_complete[frame & 1]);
+	else
+		success = clEnqueueNDRangeKernel(queue, kernel, work_dim, 0, global_ws, local_ws,
+			COUNT_OF(event_data_set_ready[0]) - 1, event_data_set_ready[frame & 1], &event_kernel_complete[frame & 1]);
+
+#endif
 	if (reportCLError(success)) {
 		stream::cerr << "error enqueuing kernel\n";
 		return -1;
