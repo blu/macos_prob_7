@@ -30,6 +30,7 @@ int main(int argc, char * argv[])
 	param.bitness[2] = 0;
 	param.bitness[3] = 0;
 	param.frames = -1U;
+	param.workgroup_size = 0;
 
 	// read render setup from CLI
 	const int result_cli = parseCLI(argc, argv, &param);

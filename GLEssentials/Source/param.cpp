@@ -43,20 +43,21 @@ out cerr;
 
 } // namespace stream
 
-static const char arg_prefix[]                   = "-";
-static const char arg_report_caps[]              = "report_caps";
-static const char arg_discard_platform_version[] = "discard_platform_version";
-static const char arg_discard_device_version[]   = "discard_device_version";
-static const char arg_platform[]                 = "platform";
-static const char arg_device[]                   = "device";
-static const char arg_use_images[]               = "use_images";
-static const char arg_report_kernel_time[]       = "report_kernel_time";
-static const char arg_screen[]                   = "screen";
-static const char arg_bitness[]                  = "bitness";
-static const char arg_fsaa[]                     = "fsaa";
-static const char arg_frames[]                   = "frames";
+const char arg_prefix[]                   = "-";
+const char arg_report_caps[]              = "report_caps";
+const char arg_discard_platform_version[] = "discard_platform_version";
+const char arg_discard_device_version[]   = "discard_device_version";
+const char arg_platform[]                 = "platform";
+const char arg_device[]                   = "device";
+const char arg_use_images[]               = "use_images";
+const char arg_report_kernel_time[]       = "report_kernel_time";
+const char arg_screen[]                   = "screen";
+const char arg_bitness[]                  = "bitness";
+const char arg_fsaa[]                     = "fsaa";
+const char arg_frames[]                   = "frames";
+const char arg_workgroup_size[]           = "group_size";
 
-static const size_t n_buffering = 2;
+const size_t n_buffering = 2;
 
 namespace testbed {
 
@@ -282,6 +283,13 @@ parseCLI(
 			continue;
 		}
 
+		if (!std::strcmp(argv[i] + prefix_len, arg_workgroup_size)) {
+			if (++i == argc || 1 != sscanf(argv[i], "%u", &param->workgroup_size) || !param->workgroup_size || param->workgroup_size & 1)
+				success = false;
+
+			continue;
+		}
+
 		success = false;
 	}
 
@@ -298,7 +306,8 @@ parseCLI(
 			"\t" << arg_prefix << arg_screen << " <width> <height> <Hz>\t: set fullscreen output of specified geometry and refresh\n"
 			"\t" << arg_prefix << arg_bitness << " <r> <g> <b> <a>\t: set GLX config of specified RGBA bitness; default is screen's bitness\n"
 			"\t" << arg_prefix << arg_fsaa << " <positive_integer>\t: set GL fullscreen antialiasing; default is none\n"
-			"\t" << arg_prefix << arg_frames << " <unsigned_integer>\t: set number of frames to run; default is max unsigned int\n";
+			"\t" << arg_prefix << arg_frames << " <unsigned_integer>\t: set number of frames to run; default is max unsigned int\n"
+			"\t" << arg_prefix << arg_workgroup_size << " <positive_integer>\t: set workgroup size; must be even; default is CL_KERNEL_WORK_GROUP_SIZE\n";
 
 		return 1;
 	}
@@ -2108,6 +2117,22 @@ int initFrame(void)
 
 	stream::cout << "kernel preferred workgroup size: " << kernel_ws << '\n';
 
+	if (param.workgroup_size) {
+		size_t multiple;
+		success = clGetKernelWorkGroupInfo(kernel,
+			device()[device_idx], CL_KERNEL_PREFERRED_WORK_GROUP_SIZE_MULTIPLE,
+			sizeof(multiple), &multiple, 0);
+
+		if (reportCLError(success)) {
+			stream::cerr << "error getting kernel preferred workgroup size multiple info\n";
+			return -1;
+		}
+
+		kernel_ws = param.workgroup_size;
+		stream::cout << "kernel preferred workgroup size multiple: " << multiple <<
+			"\nkernel user workgroup size: " << kernel_ws << '\n';
+	}
+
 	cl_uint max_dim = 0;
 	success = clGetDeviceInfo(
 		device()[device_idx], CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS,
@@ -2144,11 +2169,11 @@ int initFrame(void)
 		sizeof(buffer_devinfo), buffer_devinfo, 0);
 
 	if (reportCLError(success)) {
-		stream::cerr << "error getting device max work-group size info\n";
+		stream::cerr << "error getting device max workgroup size info\n";
 		return -1;
 	}
 
-	stream::cout << "device max work-group size: " << buffer_devinfo[0] << '\n';
+	stream::cout << "device max workgroup size: " << buffer_devinfo[0] << '\n';
 
 	global_ws[0] = image_w;
 	global_ws[1] = image_h;

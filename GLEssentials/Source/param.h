@@ -24,6 +24,7 @@ struct cli_param {
 	unsigned frames;        // frames to run
 	unsigned bitness[4];    // rgba bitness
 	unsigned fsaa;          // fsaa number of samples
+	unsigned workgroup_size;
 };
 
 
