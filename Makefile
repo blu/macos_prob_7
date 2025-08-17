@@ -51,6 +51,7 @@ CFLAGS += \
 	-fno-exceptions \
 	-fno-rtti \
 	-Ofast \
+	-fno-unsafe-math-optimizations \
 	-flto \
 	-funroll-loops \
 	-Wtrigraphs \
