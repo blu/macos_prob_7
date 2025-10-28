@@ -115,10 +115,8 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 
 		[self setOpenGLContext:context];
 
-#if SUPPORT_RETINA_RESOLUTION
 		// Opt-In to Retina resolution
 		[self setWantsBestResolutionOpenGLSurface:YES];
-#endif // SUPPORT_RETINA_RESOLUTION
 	}
 	return self;
 }
@@ -192,8 +190,6 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	// Get the view size in Points
 	NSRect viewRectPoints = [self bounds];
 
-#if SUPPORT_RETINA_RESOLUTION
-
 	// Rendering at retina resolutions will reduce aliasing, but at the potential
 	// cost of framerate and battery life due to the GPU needing to render more
 	// pixels.
@@ -206,18 +202,6 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	// viewRectPixels will be larger than viewRectPoints for retina displays.
 	// viewRectPixels will be the same as viewRectPoints for non-retina displays
 	NSRect viewRectPixels = [self convertRectToBacking:viewRectPoints];
-
-#else //if !SUPPORT_RETINA_RESOLUTION
-
-	// App will typically render faster and use less power rendering at
-	// non-retina resolutions since the GPU needs to render less pixels.
-	// There is the cost of more aliasing, but it will be no-worse than
-	// on a Mac without a retina display.
-
-	// Points:Pixels is always 1:1 when not supporting retina resolutions
-	NSRect viewRectPixels = viewRectPoints;
-
-#endif // !SUPPORT_RETINA_RESOLUTION
 
 	if (viewRectPixels.size.width > 0 && viewRectPixels.size.height > 0) {
 		// Set the new dimensions in our renderer
