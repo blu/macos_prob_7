@@ -11,7 +11,6 @@
 
 #include "param.h"
 #include "timer.h"
-#include "native_gl.h"
 #include "vectnative.hpp"
 #include "pure_macro.hpp"
 #include "cl_util.hpp"
@@ -109,24 +108,6 @@ public:
 		assert(0 != arg);
 		if (cl_kernel(0) != *arg)
 			clReleaseKernel(*arg);
-	}
-};
-
-template <>
-class scoped_functor< GLuint > {
-public:
-	void operator ()(GLuint* arg) {
-		assert(0 != arg);
-		glDeleteTextures(n_buffering, arg);
-	}
-};
-
-template <>
-class scoped_functor< FILE > {
-public:
-	void operator()(FILE* arg) {
-		assert(0 != arg);
-		fclose(arg);
 	}
 };
 
