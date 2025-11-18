@@ -95,14 +95,13 @@ static inline const char * GetGLErrorString(GLenum error)
 
 - (id) initWithDefaultFBO: (GLuint) defaultFBOName
 {
-	if((self = [super init]))
-	{
+	self = [super init];
+	if (self) {
 		NSLog(@"%s %s", glGetString(GL_RENDERER), glGetString(GL_VERSION));
 
 		_defaultFBOName = defaultFBOName;
 
-		if (initFrame())
-		{
+		if (initFrame()) {
 			[[NSApplication sharedApplication] terminate:nil];
 		}
 
