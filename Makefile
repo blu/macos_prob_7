@@ -50,9 +50,11 @@ CFLAGS += \
 	-fstrict-aliasing \
 	-fno-exceptions \
 	-fno-rtti \
-	-Ofast \
+	-O3 \
+	-ffast-math \
 	-fno-unsafe-math-optimizations \
 	-fhonor-infinities \
+	-fomit-frame-pointer \
 	-flto \
 	-funroll-loops \
 	-Wtrigraphs \
