@@ -52,6 +52,7 @@ CFLAGS += \
 	-fno-rtti \
 	-Ofast \
 	-fno-unsafe-math-optimizations \
+	-fhonor-infinities \
 	-flto \
 	-funroll-loops \
 	-Wtrigraphs \
