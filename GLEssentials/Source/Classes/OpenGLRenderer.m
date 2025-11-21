@@ -11,12 +11,6 @@
 #import "OpenGLRenderer.h"
 #import "../param.h"
 
-#ifndef NULL
-#define NULL 0
-#endif
-
-#define BUFFER_OFFSET(i) ((char *)NULL + (i))
-
 static inline const char * GetGLErrorString(GLenum error)
 {
 	const char *str;
