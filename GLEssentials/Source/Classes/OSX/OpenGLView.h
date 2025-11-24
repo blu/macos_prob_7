@@ -3,13 +3,16 @@
  See LICENSE.txt for this sample’s licensing information
  
  Abstract:
- Window controller subclass.
+ OpenGL view subclass.
  */
 
 
 #import <Cocoa/Cocoa.h>
-#import "GLEssentialsGLView.h"
+#import <QuartzCore/CVDisplayLink.h>
 
-@interface GLEssentialsWindowController : NSWindowController
+
+@interface OpenGLView : NSOpenGLView
+
+- (void) deinit;
 
 @end

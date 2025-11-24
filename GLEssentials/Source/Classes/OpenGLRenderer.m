@@ -9,7 +9,7 @@
 
 #import <AppKit/NSApplication.h>
 #import "OpenGLRenderer.h"
-#import "../param.h"
+#import "param.h"
 
 static inline const char * GetGLErrorString(GLenum error)
 {
@@ -27,25 +27,12 @@ static inline const char * GetGLErrorString(GLenum error)
 		case GL_INVALID_OPERATION:
 			str = "GL_INVALID_OPERATION";
 			break;
-#if defined __gl_h_ || defined __gl3_h_
 		case GL_OUT_OF_MEMORY:
 			str = "GL_OUT_OF_MEMORY";
 			break;
 		case GL_INVALID_FRAMEBUFFER_OPERATION:
 			str = "GL_INVALID_FRAMEBUFFER_OPERATION";
 			break;
-#endif
-#if defined __gl_h_
-		case GL_STACK_OVERFLOW:
-			str = "GL_STACK_OVERFLOW";
-			break;
-		case GL_STACK_UNDERFLOW:
-			str = "GL_STACK_UNDERFLOW";
-			break;
-		case GL_TABLE_TOO_LARGE:
-			str = "GL_TABLE_TOO_LARGE";
-			break;
-#endif
 		default:
 			str = "(ERROR: Unknown Error Enum)";
 			break;
@@ -71,13 +58,11 @@ static inline const char * GetGLErrorString(GLenum error)
 
 @implementation OpenGLRenderer
 
-
 - (void) resizeWithWidth:(GLuint)width AndHeight:(GLuint)height
 {
 	NSLog(@"OpenGLRenderer resize %u %u", width, height);
 	glViewport(0, 0, width, height);
 }
-
 
 - (void) render
 {
@@ -86,8 +71,7 @@ static inline const char * GetGLErrorString(GLenum error)
 	}
 }
 
-
-- (id) initWithDefaultFBO: (GLuint) defaultFBOName
+- (instancetype) initWithDefaultFBO:(GLuint)defaultFBOName
 {
 	self = [super init];
 	if (self) {
@@ -105,7 +89,6 @@ static inline const char * GetGLErrorString(GLenum error)
 
 	return self;
 }
-
 
 - (void) dealloc
 {

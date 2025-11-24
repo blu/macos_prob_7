@@ -8,17 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		301D56F31B41D64500EDF1DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 301D56F21B41D64500EDF1DD /* AppDelegate.m */; };
-		3A622B951A899CF400A12489 /* GLEssentialsFullscreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B6F1A899CDE00A12489 /* GLEssentialsFullscreenWindow.m */; };
-		3A622B961A899CF400A12489 /* GLEssentialsGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B711A899CDE00A12489 /* GLEssentialsGLView.m */; };
-		3A622B971A899CF400A12489 /* GLEssentialsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B731A899CDE00A12489 /* GLEssentialsWindowController.m */; };
+		3A622B961A899CF400A12489 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B711A899CDE00A12489 /* OpenGLView.m */; };
 		3A622B981A899E5000A12489 /* OpenGLRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B6C1A899CDE00A12489 /* OpenGLRenderer.m */; };
-		CE009677200D4B0E002FB104 /* prim_mono_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE009676200D4B0E002FB104 /* prim_mono_view.cpp */; };
-		CE009679200D4B43002FB104 /* problem_6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE009678200D4B43002FB104 /* problem_6.cpp */; };
-		CE00967B200D4B61002FB104 /* cl_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE00967A200D4B61002FB104 /* cl_util.cpp */; };
-		CE00967D200D4B7B002FB104 /* cl_wrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE00967C200D4B7B002FB104 /* cl_wrap.cpp */; };
-		CE00967F200D5052002FB104 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE00967E200D5052002FB104 /* OpenCL.framework */; };
-		CEB43E731FE86534004855AC /* util_gl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB43E721FE86534004855AC /* util_gl.cpp */; };
-		CEB43E751FE865C4004855AC /* get_file_size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB43E741FE865C4004855AC /* get_file_size.cpp */; };
 		CEF56BE51FF621D5003C6B9D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEF56BE41FF621D5003C6B9D /* main.mm */; };
 		CEF56BE71FF627C0003C6B9D /* param.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF56BE61FF627C0003C6B9D /* param.cpp */; };
 /* End PBXBuildFile section */
@@ -26,23 +17,13 @@
 /* Begin PBXFileReference section */
 		301D56F11B41D64500EDF1DD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		301D56F21B41D64500EDF1DD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		30D5023B2ED4003700C1CCC4 /* param.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = param.h; sourceTree = "<group>"; };
 		3A4CF89D1A89593700324DBF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A4CF9161A897D0E00324DBF /* GLEssentials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLEssentials.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A622B6B1A899CDE00A12489 /* OpenGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLRenderer.h; sourceTree = "<group>"; };
 		3A622B6C1A899CDE00A12489 /* OpenGLRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLRenderer.m; sourceTree = "<group>"; };
-		3A622B6E1A899CDE00A12489 /* GLEssentialsFullscreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLEssentialsFullscreenWindow.h; sourceTree = "<group>"; };
-		3A622B6F1A899CDE00A12489 /* GLEssentialsFullscreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLEssentialsFullscreenWindow.m; sourceTree = "<group>"; };
-		3A622B701A899CDE00A12489 /* GLEssentialsGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLEssentialsGLView.h; sourceTree = "<group>"; };
-		3A622B711A899CDE00A12489 /* GLEssentialsGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLEssentialsGLView.m; sourceTree = "<group>"; };
-		3A622B721A899CDE00A12489 /* GLEssentialsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLEssentialsWindowController.h; sourceTree = "<group>"; };
-		3A622B731A899CDE00A12489 /* GLEssentialsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLEssentialsWindowController.m; sourceTree = "<group>"; };
-		CE009676200D4B0E002FB104 /* prim_mono_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = prim_mono_view.cpp; path = ../../../interview/common/prim_mono_view.cpp; sourceTree = "<group>"; };
-		CE009678200D4B43002FB104 /* problem_6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = problem_6.cpp; path = ../../../interview/prob_7/problem_6.cpp; sourceTree = "<group>"; };
-		CE00967A200D4B61002FB104 /* cl_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cl_util.cpp; path = ../../../interview/prob_7/cl_util.cpp; sourceTree = "<group>"; };
-		CE00967C200D4B7B002FB104 /* cl_wrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cl_wrap.cpp; path = ../../../interview/prob_7/cl_wrap.cpp; sourceTree = "<group>"; };
-		CE00967E200D5052002FB104 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = ../../../../System/Library/Frameworks/OpenCL.framework; sourceTree = "<group>"; };
-		CEB43E721FE86534004855AC /* util_gl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = util_gl.cpp; path = ../../../interview/common/util_gl.cpp; sourceTree = "<group>"; };
-		CEB43E741FE865C4004855AC /* get_file_size.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = get_file_size.cpp; path = ../../../interview/common/get_file_size.cpp; sourceTree = "<group>"; };
+		3A622B701A899CDE00A12489 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
+		3A622B711A899CDE00A12489 /* OpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView.m; sourceTree = "<group>"; };
 		CEF56BE41FF621D5003C6B9D /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		CEF56BE61FF627C0003C6B9D /* param.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = param.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +33,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE00967F200D5052002FB104 /* OpenCL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +42,6 @@
 		3A4CF85C1A8958DD00324DBF = {
 			isa = PBXGroup;
 			children = (
-				CE00967E200D5052002FB104 /* OpenCL.framework */,
 				3A622B601A899CDE00A12489 /* Source */,
 				3A4CF88E1A89593700324DBF /* Data */,
 				3A4CF8661A8958DD00324DBF /* Products */,
@@ -97,13 +76,8 @@
 		3A622B601A899CDE00A12489 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CE00967C200D4B7B002FB104 /* cl_wrap.cpp */,
-				CE00967A200D4B61002FB104 /* cl_util.cpp */,
-				CE009678200D4B43002FB104 /* problem_6.cpp */,
-				CE009676200D4B0E002FB104 /* prim_mono_view.cpp */,
+				30D5023B2ED4003700C1CCC4 /* param.h */,
 				CEF56BE61FF627C0003C6B9D /* param.cpp */,
-				CEB43E741FE865C4004855AC /* get_file_size.cpp */,
-				CEB43E721FE86534004855AC /* util_gl.cpp */,
 				3A622B611A899CDE00A12489 /* Classes */,
 				CEF56BE41FF621D5003C6B9D /* main.mm */,
 			);
@@ -126,12 +100,8 @@
 			children = (
 				301D56F11B41D64500EDF1DD /* AppDelegate.h */,
 				301D56F21B41D64500EDF1DD /* AppDelegate.m */,
-				3A622B6E1A899CDE00A12489 /* GLEssentialsFullscreenWindow.h */,
-				3A622B6F1A899CDE00A12489 /* GLEssentialsFullscreenWindow.m */,
-				3A622B701A899CDE00A12489 /* GLEssentialsGLView.h */,
-				3A622B711A899CDE00A12489 /* GLEssentialsGLView.m */,
-				3A622B721A899CDE00A12489 /* GLEssentialsWindowController.h */,
-				3A622B731A899CDE00A12489 /* GLEssentialsWindowController.m */,
+				3A622B701A899CDE00A12489 /* OpenGLView.h */,
+				3A622B711A899CDE00A12489 /* OpenGLView.m */,
 			);
 			path = OSX;
 			sourceTree = "<group>";
@@ -175,6 +145,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -203,18 +174,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE00967B200D4B61002FB104 /* cl_util.cpp in Sources */,
 				301D56F31B41D64500EDF1DD /* AppDelegate.m in Sources */,
-				3A622B971A899CF400A12489 /* GLEssentialsWindowController.m in Sources */,
-				CE009679200D4B43002FB104 /* problem_6.cpp in Sources */,
 				CEF56BE51FF621D5003C6B9D /* main.mm in Sources */,
-				CE009677200D4B0E002FB104 /* prim_mono_view.cpp in Sources */,
 				CEF56BE71FF627C0003C6B9D /* param.cpp in Sources */,
-				3A622B961A899CF400A12489 /* GLEssentialsGLView.m in Sources */,
-				CE00967D200D4B7B002FB104 /* cl_wrap.cpp in Sources */,
-				CEB43E751FE865C4004855AC /* get_file_size.cpp in Sources */,
-				CEB43E731FE86534004855AC /* util_gl.cpp in Sources */,
-				3A622B951A899CF400A12489 /* GLEssentialsFullscreenWindow.m in Sources */,
+				3A622B961A899CF400A12489 /* OpenGLView.m in Sources */,
 				3A622B981A899E5000A12489 /* OpenGLRenderer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,11 +219,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.12;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Source";
 			};
 			name = Debug;
 		};
@@ -292,10 +257,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx10.12;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Source";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

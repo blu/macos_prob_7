@@ -20,9 +20,7 @@ SRCS = \
 	$(EXTERN_PROB_PATH)/cl_wrap.cpp \
 	GLEssentials/Source/param.cpp \
 	GLEssentials/Source/Classes/OSX/AppDelegate.m \
-	GLEssentials/Source/Classes/OSX/GLEssentialsWindowController.m \
-	GLEssentials/Source/Classes/OSX/GLEssentialsGLView.m \
-	GLEssentials/Source/Classes/OSX/GLEssentialsFullscreenWindow.m \
+	GLEssentials/Source/Classes/OSX/OpenGLView.m \
 	GLEssentials/Source/Classes/OpenGLRenderer.m \
 	GLEssentials/Source/main.mm
 OBJS0 = $(SRCS:.cpp=.o)

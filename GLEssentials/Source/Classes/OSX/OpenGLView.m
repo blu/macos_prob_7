@@ -6,31 +6,32 @@
  OpenGL view subclass.
  */
 
-#import "GLEssentialsGLView.h"
+#import "OpenGLView.h"
 #import "OpenGLRenderer.h"
-#import "../../param.h"
+#import "param.h"
 
 #if CGL_VERSION_1_3 == 0
 #error missing CGL_VERSION_1_3
 #endif
 
-@interface GLEssentialsGLView ()
+@interface OpenGLView ()
 {
-    OpenGLRenderer* _renderer;
+	CVDisplayLinkRef _displayLink;
+
+	OpenGLRenderer* _renderer;
 }
 @end
 
-@implementation GLEssentialsGLView
-
+@implementation OpenGLView
 
 - (CVReturn) getFrameForTime:(const CVTimeStamp*)outputTime
 {
 	// There is no autorelease pool when this method is called
 	// because it will be called from a background thread.
-    // It's important to create one or app can leak objects.
-    @autoreleasepool {
-        [self drawView];
-    }
+	// It's important to create one or app can leak objects.
+	@autoreleasepool {
+		[self drawView];
+	}
 	return kCVReturnSuccess;
 }
 
@@ -42,12 +43,14 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 									  CVOptionFlags* flagsOut, 
 									  void* displayLinkContext)
 {
-    CVReturn result = [(__bridge GLEssentialsGLView*)displayLinkContext getFrameForTime:outputTime];
+    CVReturn result = [(__bridge OpenGLView*)displayLinkContext getFrameForTime:outputTime];
     return result;
 }
 
-- (instancetype) init {
-	if (self = [super init]) {
+- (instancetype) init
+{
+	self = [super init];
+	if (self) {
 		NSOpenGLPixelFormatAttribute attrs[256] = {
 			NSOpenGLPFADoubleBuffer,
 			NSOpenGLPFADepthSize, 24,
@@ -124,39 +127,24 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 - (void) prepareOpenGL
 {
 	[super prepareOpenGL];
-	
+
 	// Make all the OpenGL calls to setup rendering  
 	//  and build the necessary rendering objects
 	[self initGL];
-	
+
 	// Create a display link capable of being used with all active displays
-	CVDisplayLinkCreateWithActiveCGDisplays(&displayLink);
-	
+	CVDisplayLinkCreateWithActiveCGDisplays(&_displayLink);
+
 	// Set the renderer output callback function
-	CVDisplayLinkSetOutputCallback(displayLink, &MyDisplayLinkCallback, (__bridge void*)self);
-	
+	CVDisplayLinkSetOutputCallback(_displayLink, &MyDisplayLinkCallback, (__bridge void*)self);
+
 	// Set the display link for the current renderer
 	CGLContextObj cglContext = [[self openGLContext] CGLContextObj];
 	CGLPixelFormatObj cglPixelFormat = [[self pixelFormat] CGLPixelFormatObj];
-	CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(displayLink, cglContext, cglPixelFormat);
-	
-	// Activate the display link
-	CVDisplayLinkStart(displayLink);
-	
-	// Register to be notified when the window closes so we can stop the displaylink
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(windowWillClose:)
-												 name:NSWindowWillCloseNotification
-											   object:[self window]];
-}
+	CVDisplayLinkSetCurrentCGDisplayFromOpenGLContext(_displayLink, cglContext, cglPixelFormat);
 
-- (void) windowWillClose:(NSNotification*)notification
-{
-	// Stop the display link when the window is closing because default
-	// OpenGL render buffers will be destroyed.  If display link continues to
-	// fire without renderbuffers, OpenGL draw calls will set errors.
-	
-	CVDisplayLinkStop(displayLink);
+	// Activate the display link
+	CVDisplayLinkStart(_displayLink);
 }
 
 - (void) initGL
@@ -167,18 +155,18 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	// thread (i.e. makeCurrentContext directs all OpenGL calls on this thread
 	// to [self openGLContext])
 	[[self openGLContext] makeCurrentContext];
-	
+
 	// Synchronize buffer swaps with vertical refresh rate
 	GLint swapInt = 1;
 	[[self openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
-	
+
 	// Init our renderer.  Use 0 for the defaultFBO which is appropriate for
 	// OSX (but not iOS since iOS apps must create their own FBO)
 	_renderer = [[OpenGLRenderer alloc] initWithDefaultFBO:0];
 }
 
 - (void)reshape
-{	
+{
 	[super reshape];
 
 	// We draw on a secondary thread through the display link. However, when
@@ -213,7 +201,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 }
 
 - (void)renewGState
-{	
+{
 	// Called whenever graphics state updated (such as window resize)
 	
 	// OpenGL rendering is not synchronous with other rendering on the OSX.
@@ -235,7 +223,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 }
 
 - (void) drawView
-{	 
+{
 	[[self openGLContext] makeCurrentContext];
 
 	// We draw on a secondary thread through the display link
@@ -250,13 +238,16 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink,
 	CGLUnlockContext([[self openGLContext] CGLContextObj]);
 }
 
-- (void) dealloc
+- (void) deinit
 {
 	// Stop the display link BEFORE releasing anything in the view
-    // otherwise the display link thread may call into the view and crash
-    // when it encounters something that has been release
-	CVDisplayLinkStop(displayLink);
+	// otherwise the display link thread may call into the view and crash
+	// when it encounters something that has been release
+	CVDisplayLinkStop(_displayLink);
 
-	CVDisplayLinkRelease(displayLink);
+	CVDisplayLinkRelease(_displayLink);
+
+	_renderer = nil;
 }
+
 @end
