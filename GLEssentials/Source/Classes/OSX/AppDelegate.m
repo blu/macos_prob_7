@@ -24,8 +24,9 @@
 	if (self) {
 		NSScreen *mainScreen = [NSScreen mainScreen];
 		const size_t retina = mainScreen.backingScaleFactor == 2.f ? 1 : 0;
+		const NSRect rect = NSMakeRect(0, 0, param.image_w >> retina, param.image_h >> retina);
 		OpenGLView *view = [[OpenGLView alloc] init];
-		NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, param.image_w >> retina, param.image_h >> retina)
+		NSWindow *window = [[NSWindow alloc] initWithContentRect:rect
 		                                               styleMask:NSWindowStyleMaskTitled
 		                                                 backing:NSBackingStoreBuffered
 		                                                   defer:NO
@@ -36,6 +37,7 @@
 
 		_controller = [[NSWindowController alloc] initWithWindow:window];
 	}
+
 	return self;
 }
 
