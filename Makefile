@@ -38,12 +38,6 @@ CFLAGS += \
 	-fmessage-length=0 \
 	-fdiagnostics-show-note-include-stack \
 	-fmacro-backtrace-limit=0 \
-	-fmodules \
-	-gmodules \
-	-fmodules-prune-interval=86400 \
-	-fmodules-prune-after=345600 \
-	-Wnon-modular-include-in-framework-module \
-	-Werror=non-modular-include-in-framework-module \
 	-fvisibility=hidden \
 	-fvisibility-inlines-hidden  \
 	-fstrict-aliasing \
@@ -103,7 +97,11 @@ CFLAGS += \
 
 ifeq ($(UNAME), Darwin)
 
-	LINKFLAGS += -framework OpenCL -framework OpenGL -framework CoreServices
+	LINKFLAGS += -framework OpenCL \
+				 -framework OpenGL \
+				 -framework CoreServices \
+				 -framework CoreVideo \
+				 -framework AppKit
 
 	LINKFLAGS += \
 		-mmacosx-version-min=10.10 \
