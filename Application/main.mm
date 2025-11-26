@@ -53,5 +53,6 @@ int main(int argc, char * argv[])
 		[application setDelegate: appDelegate];
 		[application run];
 	}
+
 	return EXIT_SUCCESS;
 }
