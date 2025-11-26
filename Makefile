@@ -18,11 +18,12 @@ SRCS = \
 	$(EXTERN_PROB_PATH)/problem_6.cpp \
 	$(EXTERN_PROB_PATH)/cl_util.cpp \
 	$(EXTERN_PROB_PATH)/cl_wrap.cpp \
-	GLEssentials/Source/param.cpp \
-	GLEssentials/Source/Classes/OSX/AppDelegate.m \
-	GLEssentials/Source/Classes/OSX/OpenGLView.m \
-	GLEssentials/Source/Classes/OpenGLRenderer.m \
-	GLEssentials/Source/main.mm
+	Content/param.cpp \
+	Renderer/OpenGLRenderer.m \
+	Application/AppDelegate.m \
+	Application/OpenGLView.m \
+	Application/main.mm
+
 OBJS0 = $(SRCS:.cpp=.o)
 OBJS1 = $(OBJS0:.mm=.o)
 OBJS = $(OBJS1:.m=.o)
@@ -90,9 +91,8 @@ CFLAGS += \
 	-I$(EXTERN_COMMON_PATH)/.. \
 	-I$(EXTERN_COMMON_PATH) \
 	-I$(EXTERN_PROB_PATH) \
-	-I./GLEssentials/Source \
-	-I./GLEssentials/Source/Classes \
-	-I./GLEssentials/Source/Classes/OSX \
+	-I./Content \
+	-I./Renderer \
 	-DMINIMAL_TREE=1 \
 	-DCLANG_QUIRK_0001=1 \
 	-DCLANG_QUIRK_0002=1 \

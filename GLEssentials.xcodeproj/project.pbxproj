@@ -39,11 +39,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30D174F52ED67A46005007E6 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				3A622B701A899CDE00A12489 /* OpenGLView.h */,
+				3A622B711A899CDE00A12489 /* OpenGLView.m */,
+				30D174F62ED67A81005007E6 /* macOS */,
+				CEF56BE41FF621D5003C6B9D /* main.mm */,
+				301D56F11B41D64500EDF1DD /* AppDelegate.h */,
+				301D56F21B41D64500EDF1DD /* AppDelegate.m */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		30D174F62ED67A81005007E6 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				3A4CF89D1A89593700324DBF /* Info.plist */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		30D174F72ED67ABE005007E6 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				3A622B6B1A899CDE00A12489 /* OpenGLRenderer.h */,
+				3A622B6C1A899CDE00A12489 /* OpenGLRenderer.m */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
+		30D174F82ED67ADF005007E6 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				30D5023B2ED4003700C1CCC4 /* param.h */,
+				CEF56BE61FF627C0003C6B9D /* param.cpp */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
 		3A4CF85C1A8958DD00324DBF = {
 			isa = PBXGroup;
 			children = (
-				3A622B601A899CDE00A12489 /* Source */,
-				3A4CF88E1A89593700324DBF /* Data */,
+				30D174F82ED67ADF005007E6 /* Content */,
+				30D174F72ED67ABE005007E6 /* Renderer */,
+				30D174F52ED67A46005007E6 /* Application */,
 				3A4CF8661A8958DD00324DBF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,56 +94,6 @@
 				3A4CF9161A897D0E00324DBF /* GLEssentials.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		3A4CF88E1A89593700324DBF /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				3A4CF8991A89593700324DBF /* OSX */,
-			);
-			name = Data;
-			path = GLEssentials/Data;
-			sourceTree = "<group>";
-		};
-		3A4CF8991A89593700324DBF /* OSX */ = {
-			isa = PBXGroup;
-			children = (
-				3A4CF89D1A89593700324DBF /* Info.plist */,
-			);
-			path = OSX;
-			sourceTree = "<group>";
-		};
-		3A622B601A899CDE00A12489 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				30D5023B2ED4003700C1CCC4 /* param.h */,
-				CEF56BE61FF627C0003C6B9D /* param.cpp */,
-				3A622B611A899CDE00A12489 /* Classes */,
-				CEF56BE41FF621D5003C6B9D /* main.mm */,
-			);
-			name = Source;
-			path = GLEssentials/Source;
-			sourceTree = "<group>";
-		};
-		3A622B611A899CDE00A12489 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				3A622B6D1A899CDE00A12489 /* OSX */,
-				3A622B6B1A899CDE00A12489 /* OpenGLRenderer.h */,
-				3A622B6C1A899CDE00A12489 /* OpenGLRenderer.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		3A622B6D1A899CDE00A12489 /* OSX */ = {
-			isa = PBXGroup;
-			children = (
-				301D56F11B41D64500EDF1DD /* AppDelegate.h */,
-				301D56F21B41D64500EDF1DD /* AppDelegate.m */,
-				3A622B701A899CDE00A12489 /* OpenGLView.h */,
-				3A622B711A899CDE00A12489 /* OpenGLView.m */,
-			);
-			path = OSX;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
