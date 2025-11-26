@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# alternatively, via xcode native cli interface (artifacts go to ./build/Release/GLEssentials.app/):
-#
-# $ xcodebuild -project GLEssentials.xcodeproj -configuration Release -target GLEssentials-OSX
-
 shopt -s nullglob
 
 EXTERN_PROB_PATH=../cg2_2014_demo/prob_7

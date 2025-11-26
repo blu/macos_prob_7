@@ -79,7 +79,7 @@ CFLAGS += \
 	-Wbool-conversion \
 	-Wenum-conversion \
 	-Wno-newline-eof \
-	-Wno-c++11-extensions \
+	-Wc++11-extensions \
 	-Winvalid-offsetof \
 	-mmacosx-version-min=10.10 \
 	-I$(EXTERN_COMMON_PATH)/.. \
