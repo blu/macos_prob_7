@@ -29,18 +29,18 @@ struct cli_param {
 
 
 #ifdef __cplusplus
-#define C_MANGLE "C"
-#else
-#define C_MANGLE
+extern "C" {
 #endif
 
-extern C_MANGLE struct cli_param param;
+extern struct cli_param param;
 
-extern C_MANGLE int parseCLI(const int, char** const, struct cli_param*);
-extern C_MANGLE int initFrame(void);
-extern C_MANGLE int renderFrame(void);
-extern C_MANGLE int deinitFrame(void);
+int parseCLI(int, char **, struct cli_param *);
+int initFrame(void);
+int renderFrame(void);
+int deinitFrame(void);
 
-#undef EXTERN_C_MANGLE
+#ifdef __cplusplus
+}
+#endif
 
 #endif // param_H__
