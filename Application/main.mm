@@ -1,10 +1,9 @@
 /*
- Copyright (C) 2015 Apple Inc. All Rights Reserved.
- See LICENSE.txt for this sample’s licensing information
- 
- Abstract:
- Standard AppKit entry point.
- */
+See the LICENSE_apple.txt file for this sample’s licensing information.
+
+Abstract:
+Application entry point for macOS.
+*/
 
 #import <Cocoa/Cocoa.h>
 #import "AppDelegate.h"

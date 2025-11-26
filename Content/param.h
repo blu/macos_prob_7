@@ -36,7 +36,7 @@ extern struct cli_param param;
 
 int parseCLI(int, const char **, struct cli_param *);
 int initFrame(void);
-int renderFrame(void);
+int renderFrame(void *);
 int deinitFrame(void);
 
 #ifdef __cplusplus

@@ -12,16 +12,13 @@ TARGET = problem_7
 UNAME := $(shell uname)
 
 SRCS = \
-	$(EXTERN_COMMON_PATH)/prim_mono_view.cpp \
 	$(EXTERN_COMMON_PATH)/get_file_size.cpp \
-	$(EXTERN_COMMON_PATH)/util_gl.cpp \
 	$(EXTERN_PROB_PATH)/problem_6.cpp \
 	$(EXTERN_PROB_PATH)/cl_util.cpp \
 	$(EXTERN_PROB_PATH)/cl_wrap.cpp \
 	Content/param.cpp \
-	Renderer/OpenGLRenderer.m \
+	Renderer/MetalRenderer.m \
 	Application/AppDelegate.m \
-	Application/OpenGLView.m \
 	Application/main.mm
 
 OBJS0 = $(SRCS:.cpp=.o)
@@ -98,7 +95,8 @@ CFLAGS += \
 ifeq ($(UNAME), Darwin)
 
 	LINKFLAGS += -framework OpenCL \
-				 -framework OpenGL \
+				 -framework Metal \
+				 -framework MetalKit \
 				 -framework CoreServices \
 				 -framework CoreVideo \
 				 -framework AppKit

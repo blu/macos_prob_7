@@ -10,7 +10,7 @@ if [[ $1 == "clean" ]]; then
 	HOSTTYPE=${HOSTTYPE} LANG=en_US.US-ASCII EXTERN_COMMON_PATH=${EXTERN_COMMON_PATH} EXTERN_PROB_PATH=${EXTERN_PROB_PATH} make clean
 
 	if [ -d ${MAKE_OUTPUT_PATH} ]; then
-		FILES=(${MAKE_OUTPUT_PATH}/*.glsl? ${MAKE_OUTPUT_PATH}/kernel)
+		FILES=(${MAKE_OUTPUT_PATH}/kernel)
 
 		if [[ ${#FILES[@]} -ne 0 ]]; then
 			rm -rf ${FILES[@]}
@@ -28,7 +28,7 @@ fi
 HOSTTYPE=${HOSTTYPE} LANG=en_US.US-ASCII EXTERN_COMMON_PATH=${EXTERN_COMMON_PATH} EXTERN_PROB_PATH=${EXTERN_PROB_PATH} xcrun make
 
 if (( $? == 0 )); then
-	FILES=(${EXTERN_PROB_PATH}/*.glsl? ${EXTERN_PROB_PATH}/kernel)
+	FILES=(${EXTERN_PROB_PATH}/kernel)
 
 	if [[ ${#FILES[@]} -ne 0 ]]; then
 		cp -r ${FILES[@]} ${MAKE_OUTPUT_PATH}

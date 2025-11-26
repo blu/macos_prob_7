@@ -15,8 +15,6 @@
 #include "pure_macro.hpp"
 #include "cl_util.hpp"
 #include "cl_wrap.hpp"
-#include "platform.hpp"
-#include "prim_mono_view.hpp"
 #include "get_file_size.hpp"
 #include "scoped.hpp"
 #include "stream.hpp"
@@ -1576,14 +1574,6 @@ int initFrame(void)
 	const size_t image_w = param.image_w;
 	const size_t image_h = param.image_h;
 
-	if (!testbed::util::reportGLCaps() || !testbed::monv::init_resources(image_w, image_h)) {
-		stream::cerr << "failed to initialise GL resources; bailing out\n";
-		return 1;
-	}
-
-	// ensure GPU resources we just initialized get deinitialized at early-out errors
-	scoped_ptr< deinit_resources_t, scoped_functor > release_monv(testbed::monv::deinit_resources);
-
 	const bool report_caps                = bool(param.flags & cli_param::BIT_REPORT_CAPS);
 	const bool discard_platform_version   = bool(param.flags & cli_param::BIT_DISCARD_PLATFORM_VERSION);
 	const bool discard_device_version     = bool(param.flags & cli_param::BIT_DISCARD_DEVICE_VERSION);
@@ -2247,7 +2237,6 @@ int initFrame(void)
 	release_dst.reset();
 	release_kernel.reset();
 	release_queue.reset();
-	release_monv.reset();
 	return 0;
 }
 
@@ -2262,11 +2251,12 @@ int deinitFrame(void)
 	}
 	clReleaseKernel(persist_kernel);
 	clReleaseCommandQueue(persist_queue);
-	testbed::monv::deinit_resources();
 	return 0;
 }
 
-int renderFrame(void)
+extern "C" void back_to_caller(void *texture, void *bytes, size_t perRow);
+
+int renderFrame(void *texture)
 {
 	using clutil::reportCLError;
 
@@ -2462,7 +2452,7 @@ int renderFrame(void)
 			return -1;
 		}
 
-		testbed::monv::render(image_map_buffer[ready_frame & 1]);
+		back_to_caller(texture, image_map_buffer[ready_frame & 1], image_w);
 
 #else
 		void *mapped = clEnqueueMapBuffer(queue, dst_d[ready_frame & 1], CL_TRUE, CL_MAP_READ, 0, mem_size_image,
@@ -2473,7 +2463,7 @@ int renderFrame(void)
 			return -1;
 		}
 
-		testbed::monv::render(mapped);
+		back_to_caller(texture, mapped, image_w);
 
 		success = clEnqueueUnmapMemObject(queue, dst_d[ready_frame & 1], mapped, 0, 0, &event_data_set_ready[ready_frame & 1][4]);
 
