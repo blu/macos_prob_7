@@ -185,7 +185,7 @@ validate_bitness(
 int
 parseCLI(
 	int argc,
-	char **argv,
+	const char **argv,
 	cli_param *param) {
 
 	const size_t prefix_len = std::strlen(arg_prefix);

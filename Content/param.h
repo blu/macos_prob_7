@@ -34,7 +34,7 @@ extern "C" {
 
 extern struct cli_param param;
 
-int parseCLI(int, char **, struct cli_param *);
+int parseCLI(int, const char **, struct cli_param *);
 int initFrame(void);
 int renderFrame(void);
 int deinitFrame(void);

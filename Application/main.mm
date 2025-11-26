@@ -11,7 +11,7 @@
 #import "param.h"
 #import "stream.hpp"
 
-int main(int argc, char * argv[])
+int main(int argc, const char * argv[])
 {
 	// set up cin, cout and cerr substitute streams
 	stream::cin.open(stdin);
