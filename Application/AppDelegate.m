@@ -61,6 +61,7 @@ Implementation of the macOS application delegate.
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	[NSApp activateIgnoringOtherApps:YES];
 	[_controller.window makeKeyAndOrderFront:self];
 }
 

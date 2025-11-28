@@ -39,7 +39,7 @@ int main(int argc, const char * argv[])
 
 	@autoreleasepool {
 		NSApplication *application = [NSApplication sharedApplication];
-		[application activateIgnoringOtherApps: YES];
+		[application setActivationPolicy:NSApplicationActivationPolicyRegular];
 
 		// provide app menu with one item: quit
 		NSMenuItem *item = [[NSMenuItem alloc] init];
