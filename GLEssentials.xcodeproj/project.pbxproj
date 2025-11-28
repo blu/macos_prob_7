@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		301D56F31B41D64500EDF1DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 301D56F21B41D64500EDF1DD /* AppDelegate.m */; };
-		3A622B961A899CF400A12489 /* OpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B711A899CDE00A12489 /* OpenGLView.m */; };
-		3A622B981A899E5000A12489 /* OpenGLRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A622B6C1A899CDE00A12489 /* OpenGLRenderer.m */; };
+		30B6EB882ED9F27C002E516C /* MetalRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B6EB872ED9F27C002E516C /* MetalRenderer.m */; };
 		CEF56BE51FF621D5003C6B9D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEF56BE41FF621D5003C6B9D /* main.mm */; };
 		CEF56BE71FF627C0003C6B9D /* param.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF56BE61FF627C0003C6B9D /* param.cpp */; };
 /* End PBXBuildFile section */
@@ -17,13 +16,11 @@
 /* Begin PBXFileReference section */
 		301D56F11B41D64500EDF1DD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		301D56F21B41D64500EDF1DD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		30B6EB862ED9F27C002E516C /* MetalRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetalRenderer.h; sourceTree = "<group>"; };
+		30B6EB872ED9F27C002E516C /* MetalRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetalRenderer.m; sourceTree = "<group>"; };
 		30D5023B2ED4003700C1CCC4 /* param.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = param.h; sourceTree = "<group>"; };
 		3A4CF89D1A89593700324DBF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A4CF9161A897D0E00324DBF /* GLEssentials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLEssentials.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A622B6B1A899CDE00A12489 /* OpenGLRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLRenderer.h; sourceTree = "<group>"; };
-		3A622B6C1A899CDE00A12489 /* OpenGLRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLRenderer.m; sourceTree = "<group>"; };
-		3A622B701A899CDE00A12489 /* OpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView.h; sourceTree = "<group>"; };
-		3A622B711A899CDE00A12489 /* OpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView.m; sourceTree = "<group>"; };
 		CEF56BE41FF621D5003C6B9D /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		CEF56BE61FF627C0003C6B9D /* param.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = param.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -42,8 +39,6 @@
 		30D174F52ED67A46005007E6 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				3A622B701A899CDE00A12489 /* OpenGLView.h */,
-				3A622B711A899CDE00A12489 /* OpenGLView.m */,
 				30D174F62ED67A81005007E6 /* macOS */,
 				CEF56BE41FF621D5003C6B9D /* main.mm */,
 				301D56F11B41D64500EDF1DD /* AppDelegate.h */,
@@ -63,8 +58,8 @@
 		30D174F72ED67ABE005007E6 /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
-				3A622B6B1A899CDE00A12489 /* OpenGLRenderer.h */,
-				3A622B6C1A899CDE00A12489 /* OpenGLRenderer.m */,
+				30B6EB862ED9F27C002E516C /* MetalRenderer.h */,
+				30B6EB872ED9F27C002E516C /* MetalRenderer.m */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -166,9 +161,8 @@
 			files = (
 				301D56F31B41D64500EDF1DD /* AppDelegate.m in Sources */,
 				CEF56BE51FF621D5003C6B9D /* main.mm in Sources */,
+				30B6EB882ED9F27C002E516C /* MetalRenderer.m in Sources */,
 				CEF56BE71FF627C0003C6B9D /* param.cpp in Sources */,
-				3A622B961A899CF400A12489 /* OpenGLView.m in Sources */,
-				3A622B981A899E5000A12489 /* OpenGLRenderer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
