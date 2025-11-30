@@ -26,9 +26,9 @@ Implementation of the macOS application delegate.
 		const NSRect rect = NSMakeRect(0, 0, param.image_w >> retina, param.image_h >> retina);
 		MTKView *view = [[MTKView alloc] initWithFrame:rect device:MTLCreateSystemDefaultDevice()];
 
-		// Keep drawing at a const (vsync) rate, if possible
+		// Keep drawing at a const (vsync'd) rate, if possible
 		view.enableSetNeedsDisplay = NO;
-		view.preferredFramesPerSecond = 120;
+		view.preferredFramesPerSecond = param.image_hz;
 		// Make sure any MTLTexture to be used by the view's drawables is not 'framebufferOnly',
 		// and set its texel format as expected by future replaceRegion updates
 		view.framebufferOnly = NO;

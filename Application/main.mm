@@ -21,13 +21,9 @@ int main(int argc, const char * argv[])
 	param.device_idx = -1U;
 	param.flags = 0;
 	param.kern_param_type = PARAM_TYPE_BUFFER;
-	param.fsaa = 0;
 	param.image_w = 512;
 	param.image_h = 512;
-	param.bitness[0] = 0;
-	param.bitness[1] = 0;
-	param.bitness[2] = 0;
-	param.bitness[3] = 0;
+	param.image_hz = 60;
 	param.frames = -1U;
 	param.workgroup_size = 0;
 

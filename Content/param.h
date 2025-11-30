@@ -21,10 +21,9 @@ struct cli_param {
 
 	unsigned image_w;       // frame width
 	unsigned image_h;       // frame height
+	unsigned image_hz;      // frame rate target Hz
 	unsigned frames;        // frames to run
-	unsigned bitness[4];    // rgba bitness
-	unsigned fsaa;          // fsaa number of samples
-	unsigned workgroup_size;
+	unsigned workgroup_size;// cl workgroup size
 };
 
 
@@ -35,9 +34,9 @@ extern "C" {
 extern struct cli_param param;
 
 int parseCLI(int, const char **, struct cli_param *);
-int initFrame(void);
-int renderFrame(void *);
-int deinitFrame(void);
+int content_init(void);
+int content_deinit(void);
+int content_frame(void *target);
 
 #ifdef __cplusplus
 }

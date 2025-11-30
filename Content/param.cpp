@@ -49,8 +49,6 @@ const char arg_device[]                   = "device";
 const char arg_use_images[]               = "use_images";
 const char arg_report_kernel_time[]       = "report_kernel_time";
 const char arg_screen[]                   = "screen";
-const char arg_bitness[]                  = "bitness";
-const char arg_fsaa[]                     = "fsaa";
 const char arg_frames[]                   = "frames";
 const char arg_workgroup_size[]           = "group_size";
 
@@ -123,10 +121,11 @@ public:
 
 static bool
 validate_fullscreen(
-	const char* const string,
-	unsigned& screen_w,
-	unsigned& screen_h)
-{
+	const char *const string,
+	unsigned &screen_w,
+	unsigned &screen_h,
+	unsigned &screen_hz) {
+
 	if (0 == string)
 		return false;
 
@@ -140,42 +139,7 @@ validate_fullscreen(
 
 	screen_w = x;
 	screen_h = y;
-
-	return true;
-}
-
-
-static bool
-validate_bitness(
-	const char* const string,
-	unsigned (& screen_bitness)[4])
-{
-	if (0 == string)
-		return false;
-
-	unsigned bitness[4];
-
-	if (4 != sscanf(string, "%u %u %u %u",
-			&bitness[0],
-			&bitness[1],
-			&bitness[2],
-			&bitness[3]))
-	{
-		return false;
-	}
-
-	if (!bitness[0] || 16 < bitness[0] ||
-		!bitness[1] || 16 < bitness[1] ||
-		!bitness[2] || 16 < bitness[2] ||
-		16 < bitness[3])
-	{
-		return false;
-	}
-
-	screen_bitness[0] = bitness[0];
-	screen_bitness[1] = bitness[1];
-	screen_bitness[2] = bitness[2];
-	screen_bitness[3] = bitness[3];
+	screen_hz = hz;
 
 	return true;
 }
@@ -235,21 +199,7 @@ parseCLI(
 		}
 
 		if (!std::strcmp(argv[i] + prefix_len, arg_screen)) {
-			if (++i == argc || !validate_fullscreen(argv[i], param->image_w, param->image_h))
-				success = false;
-
-			continue;
-		}
-
-		if (!std::strcmp(argv[i] + prefix_len, arg_bitness)) {
-			if (++i == argc || !validate_bitness(argv[i], param->bitness))
-				success = false;
-
-			continue;
-		}
-
-		if (!std::strcmp(argv[i] + prefix_len, arg_fsaa)) {
-			if (++i == argc || 1 != sscanf(argv[i], "%u", &param->fsaa))
+			if (++i == argc || !validate_fullscreen(argv[i], param->image_w, param->image_h, param->image_hz))
 				success = false;
 
 			continue;
@@ -282,9 +232,7 @@ parseCLI(
 			"\t" << arg_prefix << arg_device << " <index>\t\t\t: use device of specified index\n"
 			"\t" << arg_prefix << arg_use_images << "\t\t\t: use images instead of buffers as source arguments\n"
 			"\t" << arg_prefix << arg_report_kernel_time << "\t\t: report CL kernel time\n"
-			"\t" << arg_prefix << arg_screen << " <width> <height> <Hz>\t: set fullscreen output of specified geometry and refresh\n"
-			"\t" << arg_prefix << arg_bitness << " <r> <g> <b> <a>\t: set GLX config of specified RGBA bitness; default is screen's bitness\n"
-			"\t" << arg_prefix << arg_fsaa << " <positive_integer>\t: set GL fullscreen antialiasing; default is none\n"
+			"\t" << arg_prefix << arg_screen << " <width> <height> <Hz>\t: set framebuffer of specified geometry and refresh\n"
 			"\t" << arg_prefix << arg_frames << " <unsigned_integer>\t: set number of frames to run; default is max unsigned int\n"
 			"\t" << arg_prefix << arg_workgroup_size << " <positive_integer>\t: set workgroup size; must be even; default is CL_KERNEL_WORK_GROUP_SIZE\n";
 
@@ -1511,7 +1459,9 @@ const size_t carb_h = 6;
 const size_t mem_size_carb = carb_w * carb_h * sizeof(cl_float4);
 const size_t carb_count = mem_size_carb / sizeof(cl_float4);
 
+#if FRAME_RATE == 0
 uint64_t tlast;
+#endif
 size_t frame_idx;
 
 cl_ushort8* octet_map_buffer[n_buffering];
@@ -1556,7 +1506,7 @@ float max_extent;
 
 } // namespace anonymous
 
-int initFrame(void)
+int content_init(void)
 {
 	using testbed::scoped_linkage_ptr;
 	using testbed::scoped_ptr;
@@ -2240,7 +2190,7 @@ int initFrame(void)
 	return 0;
 }
 
-int deinitFrame(void)
+int content_deinit(void)
 {
 	for (size_t i = 0; i < n_buffering; ++i) {
 		clReleaseMemObject(src_a_d[i]);
@@ -2254,9 +2204,9 @@ int deinitFrame(void)
 	return 0;
 }
 
-extern "C" void back_to_caller(void *texture, void *bytes, size_t perRow);
+extern "C" void back_to_caller(void *target, void *bytes, size_t perRow);
 
-int renderFrame(void *texture)
+int content_frame(void *target)
 {
 	using clutil::reportCLError;
 
@@ -2452,7 +2402,7 @@ int renderFrame(void *texture)
 			return -1;
 		}
 
-		back_to_caller(texture, image_map_buffer[ready_frame & 1], image_w);
+		back_to_caller(target, image_map_buffer[ready_frame & 1], image_w);
 
 #else
 		void *mapped = clEnqueueMapBuffer(queue, dst_d[ready_frame & 1], CL_TRUE, CL_MAP_READ, 0, mem_size_image,
@@ -2463,7 +2413,7 @@ int renderFrame(void *texture)
 			return -1;
 		}
 
-		back_to_caller(texture, mapped, image_w);
+		back_to_caller(target, mapped, image_w);
 
 		success = clEnqueueUnmapMemObject(queue, dst_d[ready_frame & 1], mapped, 0, 0, &event_data_set_ready[ready_frame & 1][4]);
 

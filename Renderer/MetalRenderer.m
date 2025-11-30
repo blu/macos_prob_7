@@ -27,7 +27,7 @@ void back_to_caller(void *texture, void *bytes, size_t perRow)
 {
 	self = [super init];
 	if (self) {
-		if (initFrame()) {
+		if (content_init()) {
 			[[NSApplication sharedApplication] terminate:nil];
 		}
 
@@ -49,7 +49,7 @@ void back_to_caller(void *texture, void *bytes, size_t perRow)
 
 		// Get the drawable's texture to render content into
 		id<MTLTexture> texture = drawable.texture;
-		if (renderFrame((__bridge void *)texture)) {
+		if (content_frame((__bridge void *)texture)) {
 			[[NSApplication sharedApplication] terminate:nil];
 		}
 
@@ -66,7 +66,7 @@ void back_to_caller(void *texture, void *bytes, size_t perRow)
 
 - (void) dealloc
 {
-	deinitFrame();
+	content_deinit();
 }
 
 @end
