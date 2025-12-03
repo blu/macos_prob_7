@@ -21,7 +21,19 @@ Build artifacts are in `problem_7.app/Contents/MacOS`. Invoke executable as:
 
 ```
 $ cd problem_7.app/Contents/MacOS
-$ ./problem_7
+$ ./problem_7 -help
+usage: ./problem_7 [<option> ...]
+options (multiple args to an option must constitute a single string, eg. -foo "a b c"):
+        -report_caps                    : report CL capabilities
+        -discard_platform_version       : discard advertised platform version when producing platform report
+        -discard_device_version         : discard advertised device version when producing device report
+        -platform <index>               : use platform of specified index
+        -device <index>                 : use device of specified index
+        -use_images                     : use images instead of buffers as source arguments
+        -report_kernel_time             : report CL kernel time
+        -screen <width> <height> <Hz>   : set framebuffer of specified geometry and refresh
+        -frames <unsigned_integer>      : set number of frames to run; default is max unsigned int
+        -group_size <positive_integer>  : set workgroup size; must be even; default is CL_KERNEL_WORK_GROUP_SIZE
 ```
 
 Reference Performance
