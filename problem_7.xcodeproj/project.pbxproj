@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		301D56F31B41D64500EDF1DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 301D56F21B41D64500EDF1DD /* AppDelegate.m */; };
+		3040DE402EE26E2F00906F30 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A4CF89D1A89593700324DBF /* Info.plist */; };
+		3040DE4C2EE26F4F00906F30 /* cl_wrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3040DE472EE26F4F00906F30 /* cl_wrap.cpp */; };
+		3040DE4D2EE26F4F00906F30 /* cl_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3040DE482EE26F4F00906F30 /* cl_util.cpp */; };
+		3040DE502EE26F8500906F30 /* problem_6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3040DE4F2EE26F8500906F30 /* problem_6.cpp */; };
+		3040DE562EE2745C00906F30 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3040DE552EE2745C00906F30 /* OpenCL.framework */; };
+		3040DE5B2EE2799300906F30 /* get_file_size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3040DE5A2EE2799300906F30 /* get_file_size.cpp */; };
 		30B6EB882ED9F27C002E516C /* MetalRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B6EB872ED9F27C002E516C /* MetalRenderer.m */; };
 		CEF56BE51FF621D5003C6B9D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEF56BE41FF621D5003C6B9D /* main.mm */; };
 		CEF56BE71FF627C0003C6B9D /* param.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF56BE61FF627C0003C6B9D /* param.cpp */; };
@@ -16,11 +22,20 @@
 /* Begin PBXFileReference section */
 		301D56F11B41D64500EDF1DD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		301D56F21B41D64500EDF1DD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3040DE472EE26F4F00906F30 /* cl_wrap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cl_wrap.cpp; path = ../cg2_2014_demo/prob_7/cl_wrap.cpp; sourceTree = "<group>"; };
+		3040DE482EE26F4F00906F30 /* cl_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cl_util.cpp; path = ../cg2_2014_demo/prob_7/cl_util.cpp; sourceTree = "<group>"; };
+		3040DE492EE26F4F00906F30 /* cl_util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = cl_util.hpp; path = ../cg2_2014_demo/prob_7/cl_util.hpp; sourceTree = "<group>"; };
+		3040DE4A2EE26F4F00906F30 /* cl_wrap.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = cl_wrap.hpp; path = ../cg2_2014_demo/prob_7/cl_wrap.hpp; sourceTree = "<group>"; };
+		3040DE4B2EE26F4F00906F30 /* problem_6.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = problem_6.hpp; path = ../cg2_2014_demo/prob_7/problem_6.hpp; sourceTree = "<group>"; };
+		3040DE4F2EE26F8500906F30 /* problem_6.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = problem_6.cpp; path = ../cg2_2014_demo/prob_7/problem_6.cpp; sourceTree = "<group>"; };
+		3040DE552EE2745C00906F30 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/Frameworks/OpenCL.framework; sourceTree = DEVELOPER_DIR; };
+		3040DE592EE2799300906F30 /* get_file_size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = get_file_size.hpp; path = ../cg2_2014_demo/common/get_file_size.hpp; sourceTree = "<group>"; };
+		3040DE5A2EE2799300906F30 /* get_file_size.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = get_file_size.cpp; path = ../cg2_2014_demo/common/get_file_size.cpp; sourceTree = "<group>"; };
 		30B6EB862ED9F27C002E516C /* MetalRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetalRenderer.h; sourceTree = "<group>"; };
 		30B6EB872ED9F27C002E516C /* MetalRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetalRenderer.m; sourceTree = "<group>"; };
 		30D5023B2ED4003700C1CCC4 /* param.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = param.h; sourceTree = "<group>"; };
 		3A4CF89D1A89593700324DBF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3A4CF9161A897D0E00324DBF /* GLEssentials.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLEssentials.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A4CF9161A897D0E00324DBF /* problem_7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = problem_7.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF56BE41FF621D5003C6B9D /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		CEF56BE61FF627C0003C6B9D /* param.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = param.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -30,12 +45,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3040DE562EE2745C00906F30 /* OpenCL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3040DE422EE26EC600906F30 /* extern */ = {
+			isa = PBXGroup;
+			children = (
+				3040DE592EE2799300906F30 /* get_file_size.hpp */,
+				3040DE5A2EE2799300906F30 /* get_file_size.cpp */,
+				3040DE492EE26F4F00906F30 /* cl_util.hpp */,
+				3040DE482EE26F4F00906F30 /* cl_util.cpp */,
+				3040DE4A2EE26F4F00906F30 /* cl_wrap.hpp */,
+				3040DE472EE26F4F00906F30 /* cl_wrap.cpp */,
+				3040DE4B2EE26F4F00906F30 /* problem_6.hpp */,
+				3040DE4F2EE26F8500906F30 /* problem_6.cpp */,
+			);
+			name = extern;
+			sourceTree = "<group>";
+		};
+		3040DE542EE2745C00906F30 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3040DE552EE2745C00906F30 /* OpenCL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		30D174F52ED67A46005007E6 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,17 +115,19 @@
 		3A4CF85C1A8958DD00324DBF = {
 			isa = PBXGroup;
 			children = (
+				3040DE422EE26EC600906F30 /* extern */,
 				30D174F82ED67ADF005007E6 /* Content */,
 				30D174F72ED67ABE005007E6 /* Renderer */,
 				30D174F52ED67A46005007E6 /* Application */,
 				3A4CF8661A8958DD00324DBF /* Products */,
+				3040DE542EE2745C00906F30 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		3A4CF8661A8958DD00324DBF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A4CF9161A897D0E00324DBF /* GLEssentials.app */,
+				3A4CF9161A897D0E00324DBF /* problem_7.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,9 +135,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A4CF9151A897D0E00324DBF /* GLEssentials-OSX */ = {
+		3A4CF9151A897D0E00324DBF /* problem_7-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A4CF9331A897D0F00324DBF /* Build configuration list for PBXNativeTarget "GLEssentials-OSX" */;
+			buildConfigurationList = 3A4CF9331A897D0F00324DBF /* Build configuration list for PBXNativeTarget "problem_7-OSX" */;
 			buildPhases = (
 				3A4CF9121A897D0E00324DBF /* Sources */,
 				3A4CF9131A897D0E00324DBF /* Frameworks */,
@@ -106,9 +147,9 @@
 			);
 			dependencies = (
 			);
-			name = "GLEssentials-OSX";
-			productName = "GLEssentials-OSX";
-			productReference = 3A4CF9161A897D0E00324DBF /* GLEssentials.app */;
+			name = "problem_7-OSX";
+			productName = "problem_7-OSX";
+			productReference = 3A4CF9161A897D0E00324DBF /* problem_7.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -118,14 +159,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Dan Omachi";
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					3A4CF9151A897D0E00324DBF = {
 						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
-			buildConfigurationList = 3A4CF8601A8958DD00324DBF /* Build configuration list for PBXProject "GLEssentials" */;
+			buildConfigurationList = 3A4CF8601A8958DD00324DBF /* Build configuration list for PBXProject "problem_7" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -139,7 +180,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3A4CF9151A897D0E00324DBF /* GLEssentials-OSX */,
+				3A4CF9151A897D0E00324DBF /* problem_7-OSX */,
 			);
 		};
 /* End PBXProject section */
@@ -149,6 +190,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3040DE402EE26E2F00906F30 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,10 +201,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3040DE4D2EE26F4F00906F30 /* cl_util.cpp in Sources */,
 				301D56F31B41D64500EDF1DD /* AppDelegate.m in Sources */,
+				3040DE502EE26F8500906F30 /* problem_6.cpp in Sources */,
+				3040DE5B2EE2799300906F30 /* get_file_size.cpp in Sources */,
 				CEF56BE51FF621D5003C6B9D /* main.mm in Sources */,
 				30B6EB882ED9F27C002E516C /* MetalRenderer.m in Sources */,
 				CEF56BE71FF627C0003C6B9D /* param.cpp in Sources */,
+				3040DE4C2EE26F4F00906F30 /* cl_wrap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,12 +250,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.12;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Source";
+				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
@@ -242,11 +288,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx10.12;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Source";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -265,19 +312,22 @@
 					"CLANG_QUIRK_0002=1",
 					"OCL_QUIRK_0001=1",
 					"OCL_KERNEL_BUILD_VERBOSE=0",
+					"OCL_BUFFER_COPY=0",
 				);
 				HEADER_SEARCH_PATHS = (
-					../interview/common,
-					../interview/prob_7,
-					../interview,
+					../cg2_2014_demo/common,
+					../cg2_2014_demo/prob_7,
+					../cg2_2014_demo,
 				);
-				INFOPLIST_FILE = GLEssentials/Data/OSX/Info.plist;
+				INFOPLIST_FILE = Application/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = GLEssentials;
+				PRODUCT_NAME = problem_7;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				VALID_ARCHS = x86_64;
+				TVOS_DEPLOYMENT_TARGET = "";
+				USER_HEADER_SEARCH_PATHS = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
 		};
@@ -296,26 +346,29 @@
 					"CLANG_QUIRK_0002=1",
 					"OCL_QUIRK_0001=1",
 					"OCL_KERNEL_BUILD_VERBOSE=0",
+					"OCL_BUFFER_COPY=0",
 				);
 				HEADER_SEARCH_PATHS = (
-					../interview/common,
-					../interview/prob_7,
-					../interview,
+					../cg2_2014_demo/common,
+					../cg2_2014_demo/prob_7,
+					../cg2_2014_demo,
 				);
-				INFOPLIST_FILE = GLEssentials/Data/OSX/Info.plist;
+				INFOPLIST_FILE = Application/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_NAME = GLEssentials;
+				PRODUCT_NAME = problem_7;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				VALID_ARCHS = x86_64;
+				TVOS_DEPLOYMENT_TARGET = "";
+				USER_HEADER_SEARCH_PATHS = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A4CF8601A8958DD00324DBF /* Build configuration list for PBXProject "GLEssentials" */ = {
+		3A4CF8601A8958DD00324DBF /* Build configuration list for PBXProject "problem_7" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A4CF8861A8958DD00324DBF /* Debug */,
@@ -324,7 +377,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3A4CF9331A897D0F00324DBF /* Build configuration list for PBXNativeTarget "GLEssentials-OSX" */ = {
+		3A4CF9331A897D0F00324DBF /* Build configuration list for PBXNativeTarget "problem_7-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A4CF9341A897D0F00324DBF /* Debug */,
