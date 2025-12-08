@@ -125,7 +125,7 @@ endif
 CXX = $(CC)
 CXXFLAGS = $(CFLAGS)
 
-BINARY := $(TARGET).app/Contents/MacOS/$(TARGET)
+BINARY := $(TARGET)
 
 all: $(BINARY)
 

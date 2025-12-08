@@ -8,21 +8,22 @@ Clone [CG2 2014 demo](https://github.com/ChaosGroup/cg2_2014_demo) into the pare
 ```
 $ cd ..
 $ git clone https://github.com/ChaosGroup/cg2_2014_demo
+$ cd -
 ```
 
 Invoke the build script from this repo:
 
 ```
-$ cd -
 $ ./build.sh
 ```
 
-Build artifacts are in `problem_7.app/Contents/MacOS`. Invoke executable as:
+Invoke executable with `CWD` set to `../cg2_2014_demo/prob_7` as:
 
 ```
-$ cd problem_7.app/Contents/MacOS
-$ ./problem_7 -help
-usage: ./problem_7 [<option> ...]
+$ TO_EXE=$PWD
+$ cd ../cg2_2014_demo/prob_7
+$ $TO_EXE/problem_7 -help
+usage: /path/to/problem_7 [<option> ...]
 options (multiple args to an option must constitute a single string, eg. -foo "a b c"):
         -report_caps                    : report CL capabilities
         -discard_platform_version       : discard advertised platform version when producing platform report
