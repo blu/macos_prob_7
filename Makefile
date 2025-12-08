@@ -78,7 +78,7 @@ CFLAGS += \
 	-Wno-newline-eof \
 	-Wc++11-extensions \
 	-Winvalid-offsetof \
-	-mmacosx-version-min=10.10 \
+	-mmacosx-version-min=10.13 \
 	-I$(EXTERN_COMMON_PATH)/.. \
 	-I$(EXTERN_COMMON_PATH) \
 	-I$(EXTERN_PROB_PATH) \
@@ -103,7 +103,7 @@ ifeq ($(UNAME), Darwin)
 				 -framework AppKit
 
 	LINKFLAGS += \
-		-mmacosx-version-min=10.10 \
+		-mmacosx-version-min=10.13 \
 		-fobjc-arc \
 		-fobjc-link-runtime \
 		-stdlib=libc++ \

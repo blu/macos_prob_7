@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		301D56F31B41D64500EDF1DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 301D56F21B41D64500EDF1DD /* AppDelegate.m */; };
-		3040DE402EE26E2F00906F30 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A4CF89D1A89593700324DBF /* Info.plist */; };
 		3040DE4C2EE26F4F00906F30 /* cl_wrap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3040DE472EE26F4F00906F30 /* cl_wrap.cpp */; };
 		3040DE4D2EE26F4F00906F30 /* cl_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3040DE482EE26F4F00906F30 /* cl_util.cpp */; };
 		3040DE502EE26F8500906F30 /* problem_6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3040DE4F2EE26F8500906F30 /* problem_6.cpp */; };
@@ -190,7 +189,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3040DE402EE26E2F00906F30 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +319,8 @@
 				);
 				INFOPLIST_FILE = Application/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.problem-7";
 				PRODUCT_NAME = problem_7;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
@@ -355,7 +354,8 @@
 				);
 				INFOPLIST_FILE = Application/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.problem-7";
 				PRODUCT_NAME = problem_7;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
