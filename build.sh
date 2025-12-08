@@ -1,7 +1,5 @@
 #!/bin/bash
 
-shopt -s nullglob
-
 EXTERN_PROB_PATH=../cg2_2014_demo/prob_7
 EXTERN_COMMON_PATH=../cg2_2014_demo/common
 
