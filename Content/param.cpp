@@ -1973,6 +1973,9 @@ int content_init(void)
 #if OCL_QUIRK_0004
 		" -D OCL_QUIRK_0004"
 #endif
+#if OCL_QUIRK_0005
+		" -D OCL_QUIRK_0005"
+#endif
 ;
 	success = clBuildProgram(program, 1, device() + device_idx, build_opt, 0, 0);
 
