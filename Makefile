@@ -19,7 +19,7 @@ SRCS = \
 	Content/param.cpp \
 	Renderer/MetalRenderer.m \
 	Application/AppDelegate.m \
-	Application/main.mm
+	Application/main.m
 
 OBJS0 = $(SRCS:.cpp=.o)
 OBJS1 = $(OBJS0:.mm=.o)
@@ -131,9 +131,6 @@ all: $(BINARY)
 
 %.o : %.cpp
 	$(CC) -x c++ -std=c++11 -stdlib=libc++ $(CXXFLAGS) -c $< -o $@
-
-%.o : %.mm
-	$(CC) -x objective-c++ -std=gnu++11 -fobjc-arc -stdlib=libc++ $(CXXFLAGS) -c $< -o $@
 
 %.o : %.m
 	$(CC) -x objective-c -std=gnu99 -fobjc-arc $(CFLAGS) -c $< -o $@

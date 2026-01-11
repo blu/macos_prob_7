@@ -8,15 +8,9 @@ Application entry point for macOS.
 #import <Cocoa/Cocoa.h>
 #import "AppDelegate.h"
 #import "param.h"
-#import "stream.hpp"
 
 int main(int argc, const char * argv[])
 {
-	// set up cin, cout and cerr substitute streams
-	stream::cin.open(stdin);
-	stream::cout.open(stdout);
-	stream::cerr.open(stderr);
-
 	param.platform_idx = 0;
 	param.device_idx = -1U;
 	param.flags = 0;

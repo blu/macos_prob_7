@@ -150,6 +150,11 @@ parseCLI(
 	const char **argv,
 	cli_param *param) {
 
+	// we are early into the c++ code; use the occasion to set up cin, cout and cerr substitute streams
+	stream::cin.open(stdin);
+	stream::cout.open(stdout);
+	stream::cerr.open(stderr);
+
 	const size_t prefix_len = std::strlen(arg_prefix);
 	bool success = true;
 

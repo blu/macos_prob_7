@@ -13,8 +13,8 @@
 		3040DE502EE26F8500906F30 /* problem_6.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3040DE4F2EE26F8500906F30 /* problem_6.cpp */; };
 		3040DE562EE2745C00906F30 /* OpenCL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3040DE552EE2745C00906F30 /* OpenCL.framework */; };
 		3040DE5B2EE2799300906F30 /* get_file_size.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3040DE5A2EE2799300906F30 /* get_file_size.cpp */; };
+		30ABAA012F134F2E00F60F5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30ABAA002F134F2E00F60F5B /* main.m */; };
 		30B6EB882ED9F27C002E516C /* MetalRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B6EB872ED9F27C002E516C /* MetalRenderer.m */; };
-		CEF56BE51FF621D5003C6B9D /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEF56BE41FF621D5003C6B9D /* main.mm */; };
 		CEF56BE71FF627C0003C6B9D /* param.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEF56BE61FF627C0003C6B9D /* param.cpp */; };
 /* End PBXBuildFile section */
 
@@ -30,12 +30,12 @@
 		3040DE552EE2745C00906F30 /* OpenCL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenCL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenCL.framework; sourceTree = DEVELOPER_DIR; };
 		3040DE592EE2799300906F30 /* get_file_size.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = get_file_size.hpp; path = ../cg2_2014_demo/common/get_file_size.hpp; sourceTree = "<group>"; };
 		3040DE5A2EE2799300906F30 /* get_file_size.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = get_file_size.cpp; path = ../cg2_2014_demo/common/get_file_size.cpp; sourceTree = "<group>"; };
+		30ABAA002F134F2E00F60F5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		30B6EB862ED9F27C002E516C /* MetalRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetalRenderer.h; sourceTree = "<group>"; };
 		30B6EB872ED9F27C002E516C /* MetalRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetalRenderer.m; sourceTree = "<group>"; };
 		30D5023B2ED4003700C1CCC4 /* param.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = param.h; sourceTree = "<group>"; };
 		3A4CF89D1A89593700324DBF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A4CF9161A897D0E00324DBF /* problem_7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = problem_7.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEF56BE41FF621D5003C6B9D /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		CEF56BE61FF627C0003C6B9D /* param.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = param.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,9 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				30D174F62ED67A81005007E6 /* macOS */,
-				CEF56BE41FF621D5003C6B9D /* main.mm */,
 				301D56F11B41D64500EDF1DD /* AppDelegate.h */,
 				301D56F21B41D64500EDF1DD /* AppDelegate.m */,
+				30ABAA002F134F2E00F60F5B /* main.m */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -203,9 +203,9 @@
 				301D56F31B41D64500EDF1DD /* AppDelegate.m in Sources */,
 				3040DE502EE26F8500906F30 /* problem_6.cpp in Sources */,
 				3040DE5B2EE2799300906F30 /* get_file_size.cpp in Sources */,
-				CEF56BE51FF621D5003C6B9D /* main.mm in Sources */,
 				30B6EB882ED9F27C002E516C /* MetalRenderer.m in Sources */,
 				CEF56BE71FF627C0003C6B9D /* param.cpp in Sources */,
+				30ABAA012F134F2E00F60F5B /* main.m in Sources */,
 				3040DE4C2EE26F4F00906F30 /* cl_wrap.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
