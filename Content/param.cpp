@@ -1960,7 +1960,7 @@ int content_init(void)
 
 	const scoped_ptr< cl_program, scoped_functor > release_program(&program);
 	const char build_opt[] =
-		"-cl-mad-enable -D INFINITE_RAY"
+		"-cl-unsafe-math-optimizations -D INFINITE_RAY"
 #if OCL_QUIRK_0001
 		" -D OCL_QUIRK_0001"
 #endif
