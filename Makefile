@@ -42,7 +42,6 @@ CFLAGS += \
 	-fno-rtti \
 	-O3 \
 	-ffast-math \
-	-fno-unsafe-math-optimizations \
 	-fhonor-infinities \
 	-fomit-frame-pointer \
 	-flto \
