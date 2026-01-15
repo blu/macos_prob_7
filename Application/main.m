@@ -34,7 +34,9 @@ int main(int argc, const char * argv[])
 		// provide app menu with one item: quit
 		NSMenuItem *item = [[NSMenuItem alloc] init];
 		[item setSubmenu: [[NSMenu alloc] init]];
-		[item.submenu addItem: [[NSMenuItem alloc] initWithTitle: [@"Quit " stringByAppendingString: NSProcessInfo.processInfo.processName] action:@selector(terminate:) keyEquivalent:@"q"]];
+		[item.submenu addItem: [[NSMenuItem alloc] initWithTitle:[@"Quit " stringByAppendingString: NSProcessInfo.processInfo.processName]
+														  action:@selector(terminate:)
+												   keyEquivalent:@"q"]];
 		[application setMainMenu: [[NSMenu alloc] init]];
 		[application.mainMenu addItem: item];
 
